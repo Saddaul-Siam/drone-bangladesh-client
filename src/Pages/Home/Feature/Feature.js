@@ -105,8 +105,3 @@ const Feature = () => {
 };
 
 export default Feature;
-/* 
-<a href="https://imgbb.com/"></a>
-<a href="https://imgbb.com/"></a>
-<a href="https://imgbb.com/"></a>
-*/
