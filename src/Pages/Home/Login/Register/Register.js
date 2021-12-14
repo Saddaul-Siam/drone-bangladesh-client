@@ -11,6 +11,7 @@ import { Grid } from "@mui/material";
 import { NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../../../Hooks/useAuth";
 import PrimaryButton from "../../../../StyledComponent/MuiButton";
+import Navigation from "../../../Shared/Navigation/Navigation";
 
 const Register = () => {
   const [loginData, setLoginData] = useState({});
@@ -36,6 +37,7 @@ const Register = () => {
 
   return (
     <>
+    <Navigation></Navigation>
       <Container sx={{ mt: 10 }}>
         <Grid container spacing={2}>
           <Grid item sx={{ mt: 8 }} xs={12} md={6}>

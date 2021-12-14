@@ -10,7 +10,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { Link, NavLink } from "react-router-dom";
 import { Button, Container, Fab, Zoom } from "@mui/material";
-// import useAuth from "../../../Hooks/useAuth";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Slide from "@mui/material/Slide";
 import PropTypes from "prop-types";
@@ -197,11 +196,6 @@ const Navigation = (props) => {
           </Link>{" "}
         </MenuItem>
       )}
-      <MenuItem>
-        <Link style={{ textDecoration: "none", color: "black" }} to="/login">
-          <Button color="inherit">Login</Button>
-        </Link>{" "}
-      </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           size="large"
@@ -228,7 +222,7 @@ const Navigation = (props) => {
                   style={{ textDecoration: "none", color: "white" }}
                   to="/"
                 >
-                  BIKE BUZZ
+                  DRONE BANGLADESH
                 </NavLink>
               </Typography>
               <Box sx={{ flexGrow: 1 }} />
