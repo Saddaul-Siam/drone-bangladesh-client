@@ -1,9 +1,14 @@
-import { Container, Paper, Typography } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Container,
+  Typography,
+} from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import "react-multi-carousel/lib/styles.css";
 import Carousel from "react-multi-carousel";
-import { Image } from "semantic-ui-react";
 
 const LatestBlog = ({ deviceType }) => {
   const responsive = {
@@ -35,6 +40,7 @@ const LatestBlog = ({ deviceType }) => {
         </Typography>
         <Typography
           sx={{
+            pb: 8,
             color: "#06264b",
             fontSize: "45px",
             fontWeight: 700,
@@ -52,94 +58,98 @@ const LatestBlog = ({ deviceType }) => {
           itemClass="image-item"
           responsive={responsive}
         >
-          <Paper elevation={0}>
-            <Box sx={{ display: "flex", justifyContent: "center" }}>
-              <img
-                src="https://i.ibb.co/GTc9fcz/game-controller-d17d0c81-03d0-4796-a48d-ef51e972a137.webp"
-                alt=""
-              />
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                flexDirection: "column",
-              }}
-            >
-              <Typography sx={{ fontSize: "1.5rem" }}>
-                Remote Control
+          <Card sx={{ maxWidth: 360 }} variant="outlined">
+            <CardMedia
+              sx={{ p: 1 }}
+              component="img"
+              height="232"
+              image="https://cdn.shopify.com/s/files/1/0111/9135/3402/articles/cea6gt3f_600x400_crop_center.jpg?v=1620464891"
+              alt="Paella dish"
+            />
+            <CardContent>
+              <Typography sx={{ fontWeight: 500, fontSize: "18px" }}>
+                Radndi mpihs amdh pinsis
               </Typography>
-              <Typography sx={{ fontSize: "15px" }}>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
+              <hr />
+              <Typography sx={{ color: "#919090", fontSize: 13, py: 3 }}>
+                14 Dec, 2021
               </Typography>
-            </Box>
-          </Paper>
-          <Paper elevation={0}>
-            <Box sx={{ display: "flex", justifyContent: "center" }}>
-              <img
-                src="https://i.ibb.co/GTc9fcz/game-controller-d17d0c81-03d0-4796-a48d-ef51e972a137.webp"
-                alt=""
-              />
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                flexDirection: "column",
-              }}
-            >
-              <Typography sx={{ fontSize: "1.5rem" }}>
-                Remote Control
+              <Typography sx={{ color: "#333", fontSize: "14px" }}>
+                This impressive paella is a perfect party dish and a fun meal to
+                cook together with your guests. Add 1 cup of frozen peas along
+                with the mussels, if you like.
               </Typography>
-              <Typography sx={{ fontSize: "15px" }}>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
+            </CardContent>
+          </Card>
+          <Card sx={{ maxWidth: 360 }} variant="outlined">
+            <CardMedia
+              sx={{ p: 1 }}
+              component="img"
+              height="232"
+              image="https://cdn.shopify.com/s/files/1/0111/9135/3402/articles/drone-blog-3_600x400_crop_center.png?v=1620464561"
+              alt="Paella dish"
+            />
+            <CardContent>
+              <Typography sx={{ fontWeight: 500, fontSize: "18px" }}>
+                Insde drone nihus mpkis
               </Typography>
-            </Box>
-          </Paper>
-          <Paper elevation={0}>
-            <Box sx={{ display: "flex", justifyContent: "center" }}>
-              <img
-                src="https://i.ibb.co/GTc9fcz/game-controller-d17d0c81-03d0-4796-a48d-ef51e972a137.webp"
-                alt=""
-              />
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                flexDirection: "column",
-              }}
-            >
-              <Typography sx={{ fontSize: "1.5rem" }}>
-                Remote Control
+              <hr />
+              <Typography sx={{ color: "#919090", fontSize: 13, py: 3 }}>
+                14 Dec, 2021
               </Typography>
-              <Typography sx={{ fontSize: "15px" }}>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
+              <Typography sx={{ color: "#333", fontSize: "14px" }}>
+                This impressive paella is a perfect party dish and a fun meal to
+                cook together with your guests. Add 1 cup of frozen peas along
+                with the mussels, if you like.
               </Typography>
-            </Box>
-          </Paper>
-          <Paper elevation={0}>
-            <Box sx={{ display: "flex", justifyContent: "center" }}>
-              <img
-                src="https://i.ibb.co/GTc9fcz/game-controller-d17d0c81-03d0-4796-a48d-ef51e972a137.webp"
-                alt=""
-              />
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                flexDirection: "column",
-              }}
-            >
-              <Typography sx={{ fontSize: "1.5rem" }}>
-                Remote Control
+            </CardContent>
+          </Card>
+          <Card sx={{ maxWidth: 360 }} variant="outlined">
+            <CardMedia
+              sx={{ p: 1 }}
+              component="img"
+              height="232"
+              image="https://cdn.shopify.com/s/files/1/0111/9135/3402/articles/drone-blog-2_600x400_crop_center.png?v=1620464513"
+              alt="Paella dish"
+            />
+            <CardContent>
+              <Typography sx={{ fontWeight: 500, fontSize: "18px" }}>
+                Drone nise mnise plkuh
               </Typography>
-              <Typography sx={{ fontSize: "15px" }}>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
+              <hr />
+              <Typography sx={{ color: "#919090", fontSize: 13, py: 3 }}>
+                14 Dec, 2021
               </Typography>
-            </Box>
-          </Paper>
+              <Typography sx={{ color: "#333", fontSize: "14px" }}>
+                This impressive paella is a perfect party dish and a fun meal to
+                cook together with your guests. Add 1 cup of frozen peas along
+                with the mussels, if you like.
+              </Typography>
+            </CardContent>
+          </Card>
+          <Card sx={{ maxWidth: 360 }} variant="outlined">
+            <CardMedia
+              sx={{ p: 1 }}
+              component="img"
+              height="232"
+              image="https://cdn.shopify.com/s/files/1/0111/9135/3402/articles/drone-blog-1_600x400_crop_center.png?v=1620464459"
+              alt="Paella dish"
+            />
+            <CardContent>
+              <Typography sx={{ fontWeight: 500, fontSize: "18px" }}>
+                Onisw dia vansi kanei
+              </Typography>
+              <hr />
+              <Typography sx={{ color: "#919090", fontSize: 13, py: 3 }}>
+                14 Dec, 2021
+              </Typography>
+              <Typography sx={{ color: "#333", fontSize: "14px" }}>
+                This impressive paella is a perfect party dish and a fun meal to
+                cook together with your guests. Add 1 cup of frozen peas along
+                with the mussels, if you like.
+              </Typography>
+            </CardContent>
+          </Card>
         </Carousel>
       </Box>
     </Container>
