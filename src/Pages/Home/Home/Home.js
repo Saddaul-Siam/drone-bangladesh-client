@@ -6,6 +6,7 @@ import FeaturedProduct from "../Featured Product/FeaturedProduct";
 import LatestBlog from "../LatestBlog/LatestBlog";
 import ProfessionalDrone from "../ProfessionalDrone/ProfessionalDrone";
 import SmartFeature from "../SmartFeature/SmartFeature";
+import Subscribe from "../Subscribe/Subscribe";
 
 const Home = () => {
   return (
@@ -17,6 +18,7 @@ const Home = () => {
       <ProfessionalDrone />
       <SmartFeature />
       <LatestBlog />
+      <Subscribe />
     </div>
   );
 };
