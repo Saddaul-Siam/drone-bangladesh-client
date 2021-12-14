@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "../../Shared/Footer/Footer";
 import Navigation from "../../Shared/Navigation/Navigation";
 import Banner from "../Banner/Banner";
 import Feature from "../Feature/Feature";
@@ -19,6 +20,7 @@ const Home = () => {
       <SmartFeature />
       <LatestBlog />
       <Subscribe />
+      <Footer />
     </div>
   );
 };

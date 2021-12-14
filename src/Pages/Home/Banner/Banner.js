@@ -43,7 +43,7 @@ const Banner = () => {
   });
   const { background } = useStyle();
   return (
-    <Box sx={{ height: "100hv", pt: 10 }}>
+    <Box sx={{ height: "100hv", pt: 10 }} id="back-to-top">
       <Swiper
         pagination={pagination}
         className="mySwiper"
