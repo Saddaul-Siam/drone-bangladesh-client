@@ -1,16 +1,8 @@
 import React, { useEffect, useState } from "react";
-import {
-  Container,
-  Typography,
-  Box,
-  CardContent,
-  Card,
-  CardMedia,
-  Button,
-} from "@mui/material";
+import { Container, Typography, Box } from "@mui/material";
 import Carousel from "react-multi-carousel";
-import { makeStyles } from "@mui/styles";
 import AddToCartModal from "../ShoppingCart/AddToCartModal/AddToCartModal";
+import Product from "./Product";
 
 const Products = ({ handleOpen, handleClose, open }) => {
   const [products, setProducts] = useState([]);
@@ -37,14 +29,6 @@ const Products = ({ handleOpen, handleClose, open }) => {
     },
   };
 
-  const useStyle = makeStyles({
-    cardHover: {
-      "&:hover": {
-        boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
-      },
-    },
-  });
-  const { cardHover } = useStyle();
   return (
     <Container>
       <Box
@@ -64,44 +48,11 @@ const Products = ({ handleOpen, handleClose, open }) => {
       <Box sx={{ my: 8 }}>
         <Carousel ssr responsive={responsive}>
           {products?.map((product) => (
-            <Box>
-              <Card
-                sx={{ maxWidth: 260, mb: 2 }}
-                variant="outlined"
-                className={cardHover}
-              >
-                <CardMedia component="img" height="260" image={product.img} />
-                <CardContent>
-                  <Typography sx={{ fontWeight: 500, fontSize: "18px" }}>
-                    Onisw dia vansi kanei
-                  </Typography>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      pt: 2,
-                    }}
-                  >
-                    <Box>
-                      <Typography
-                        sx={{
-                          fontSize: 20,
-                          fontWeight: 700,
-                          color: "#fc6539",
-                        }}
-                      >
-                        $80
-                      </Typography>
-                    </Box>
-                    <Box>
-                      <Button /* onClick={handleOpen} */ variant="outlined">
-                        Add to cart
-                      </Button>
-                    </Box>
-                  </Box>
-                </CardContent>
-              </Card>
-            </Box>
+            <Product
+              product={product}
+              key={product._id}
+              handleOpen={handleOpen}
+            />
           ))}
         </Carousel>
       </Box>
