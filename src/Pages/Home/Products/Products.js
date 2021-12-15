@@ -28,7 +28,11 @@ const Products = ({ handleOpen, handleClose, open }) => {
       paritialVisibilityGutter: 30,
     },
   };
-
+  const [productId, setProductId] = useState("");
+  const handleClickAddToCard = (id) => {
+    handleOpen();
+    setProductId(id);
+  };
   return (
     <Container>
       <Box
@@ -52,15 +56,17 @@ const Products = ({ handleOpen, handleClose, open }) => {
               product={product}
               key={product._id}
               handleOpen={handleOpen}
+              handleClickAddToCard={handleClickAddToCard}
             />
           ))}
         </Carousel>
+        <AddToCartModal
+          handleOpen={handleOpen}
+          handleClose={handleClose}
+          open={open}
+          productId={productId}
+        />
       </Box>
-      <AddToCartModal
-        handleOpen={handleOpen}
-        handleClose={handleClose}
-        open={open}
-      />
     </Container>
   );
 };

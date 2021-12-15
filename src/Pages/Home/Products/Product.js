@@ -10,8 +10,8 @@ import {
 import { makeStyles } from "@mui/styles";
 
 const Product = (props) => {
-  const { handleOpen, product } = props;
-  const { name, img, price } = product;
+  const { handleClickAddToCard, product } = props;
+  const { name, img, price, _id } = product;
   const useStyle = makeStyles({
     cardHover: {
       "&:hover": {
@@ -20,6 +20,7 @@ const Product = (props) => {
     },
   });
   const { cardHover } = useStyle();
+  
   return (
     <Box>
       <Card
@@ -51,7 +52,10 @@ const Product = (props) => {
               </Typography>
             </Box>
             <Box>
-              <Button onClick={handleOpen} variant="outlined">
+              <Button
+                onClick={() => handleClickAddToCard(_id)}
+                variant="outlined"
+              >
                 Add to cart
               </Button>
             </Box>
