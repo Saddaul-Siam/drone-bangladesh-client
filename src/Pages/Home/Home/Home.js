@@ -11,6 +11,9 @@ import SmartFeature from "../SmartFeature/SmartFeature";
 import Subscribe from "../Subscribe/Subscribe";
 
 const Home = () => {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   return (
     <div>
       <Navigation />
@@ -19,7 +22,7 @@ const Home = () => {
       <FeaturedProduct />
       <ProfessionalDrone />
       <SmartFeature />
-      <Products />
+      <Products handleOpen={handleOpen} handleClose={handleClose} open={open} />
       <LatestBlog />
       <Subscribe />
       <Footer />

@@ -10,7 +10,9 @@ import {
 } from "@mui/material";
 import Carousel from "react-multi-carousel";
 import { makeStyles } from "@mui/styles";
-const Products = () => {
+import AddToCartModal from "../ShoppingCart/AddToCartModal/AddToCartModal";
+
+const Products = ({ handleOpen, handleClose, open }) => {
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -90,17 +92,15 @@ const Products = () => {
                     </Typography>
                   </Box>
                   <Box>
-                    <Button variant="outlined">Add to cart</Button>
+                    <Button onClick={handleOpen} variant="outlined">
+                      Add to cart
+                    </Button>
                   </Box>
                 </Box>
               </CardContent>
             </Card>
           </Box>
-           <Card
-              sx={{ maxWidth: 260, mb: 2 }}
-              variant="outlined"
-              className={cardHover}
-            >
+          <Card sx={{ maxWidth: 260 }} variant="outlined" className={cardHover}>
             <CardMedia
               component="img"
               height="260"
@@ -135,11 +135,7 @@ const Products = () => {
               </Box>
             </CardContent>
           </Card>
-           <Card
-              sx={{ maxWidth: 260, mb: 2 }}
-              variant="outlined"
-              className={cardHover}
-            >
+          <Card sx={{ maxWidth: 260 }} variant="outlined" className={cardHover}>
             <CardMedia
               component="img"
               height="260"
@@ -174,11 +170,7 @@ const Products = () => {
               </Box>
             </CardContent>
           </Card>
-           <Card
-              sx={{ maxWidth: 260, mb: 2 }}
-              variant="outlined"
-              className={cardHover}
-            >
+          <Card sx={{ maxWidth: 260 }} variant="outlined" className={cardHover}>
             <CardMedia
               component="img"
               height="260"
@@ -213,11 +205,7 @@ const Products = () => {
               </Box>
             </CardContent>
           </Card>
-           <Card
-              sx={{ maxWidth: 260, mb: 2 }}
-              variant="outlined"
-              className={cardHover}
-            >
+          <Card sx={{ maxWidth: 260 }} variant="outlined" className={cardHover}>
             <CardMedia
               component="img"
               height="260"
@@ -251,11 +239,7 @@ const Products = () => {
               </Box>
             </CardContent>
           </Card>
-           <Card
-              sx={{ maxWidth: 260, mb: 2 }}
-              variant="outlined"
-              className={cardHover}
-            >
+          <Card sx={{ maxWidth: 260 }} variant="outlined" className={cardHover}>
             <CardMedia
               component="img"
               height="260"
@@ -291,6 +275,11 @@ const Products = () => {
           </Card>
         </Carousel>
       </Box>
+      <AddToCartModal
+        handleOpen={handleOpen}
+        handleClose={handleClose}
+        open={open}
+      />
     </Container>
   );
 };
