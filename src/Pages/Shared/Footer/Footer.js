@@ -30,7 +30,7 @@ const Footer = () => {
     <Box sx={{ background: "#303030", py: 5 }}>
       <Container>
         <Grid container>
-          <Grid item xs={12} md={6} lg={4} >
+          <Grid item xs={12} md={6} lg={4}>
             <List sx={{ color: "#ffffff" }}>
               <ListItem>
                 <Typography
@@ -50,21 +50,19 @@ const Footer = () => {
               </ListItem>
               <ListItem>
                 <LocationOnIcon sx={{ pr: 2 }} />
-                <ListItemText>
-                  Addresss: 123 Pall Mall, London England
-                </ListItemText>
+                <ListItemText>Addresss: Pabna Dhaka Bangladesh</ListItemText>
               </ListItem>
               <ListItem>
                 <EmailIcon sx={{ pr: 2 }} />
-                <ListItemText>Email: hello@example.com</ListItemText>
+                <ListItemText>Email: saddaul.siam@gmail.com</ListItemText>
               </ListItem>
               <ListItem>
                 <PhoneIcon sx={{ pr: 2 }} />
-                <ListItemText>Phone: (012) 345 6789</ListItemText>
+                <ListItemText>Phone: +8801311333277</ListItemText>
               </ListItem>
             </List>
           </Grid>
-          <Grid item xs={12} md={6} lg={3} >
+          <Grid item xs={12} md={6} lg={3}>
             <List sx={{ color: "#ffffff" }}>
               <ListItem>
                 <Typography
@@ -101,7 +99,7 @@ const Footer = () => {
               </ListItem>
             </List>
           </Grid>
-          <Grid item xs={12} md={6} lg={3} >
+          <Grid item xs={12} md={6} lg={3}>
             <List sx={{ color: "#ffffff" }}>
               <ListItem>
                 <Typography
@@ -140,7 +138,7 @@ const Footer = () => {
               </ListItem>
             </List>
           </Grid>
-          <Grid item xs={12} md={6} lg={2} >
+          <Grid item xs={12} md={6} lg={2}>
             <List sx={{ color: "#ffffff" }}>
               <ListItem>
                 <Typography

@@ -39,7 +39,7 @@ const Subscribe = () => {
               border: "none",
               borderRadius: "50px",
               outline: "none",
-              width: "700px",
+              width: "60vh",
               backgroundColor: "#e6e6e6",
               fontSize: "18px",
             }}

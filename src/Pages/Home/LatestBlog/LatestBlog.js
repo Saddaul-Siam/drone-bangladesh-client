@@ -57,6 +57,7 @@ const LatestBlog = ({ deviceType }) => {
           deviceType={deviceType}
           itemClass="image-item"
           responsive={responsive}
+          arrows={true}
         >
           <Card sx={{ maxWidth: 360 }} variant="outlined">
             <CardMedia
