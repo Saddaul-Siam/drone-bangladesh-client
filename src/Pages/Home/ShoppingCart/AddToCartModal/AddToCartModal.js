@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -19,11 +19,11 @@ const style = {
 };
 
 const AddToCartModal = (props) => {
-  console.log(props.productId);
+  const [product, setProduct] = useState({});
   useEffect(() => {
     fetch(`http://localhost:5000/product/${props?.productId}`)
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => setProduct(data));
   }, [props?.productId]);
   return (
     <div>
@@ -42,30 +42,21 @@ const AddToCartModal = (props) => {
           <Box sx={style}>
             <Grid container spacing={5}>
               <Grid item xs={6} md={6}>
-                <img
-                  width="100%"
-                  src="https://cdn.shopify.com/s/files/1/0111/9135/3402/products/products-5_9eaffd1c-bd62-4516-847b-696535d476e0.jpg?v=1621479916"
-                  alt=""
-                />
+                <img width="100%" height="400px" src={product?.img} alt="" />
               </Grid>
               <Grid item xs={6} md={6}>
                 <Typography sx={{ fontSize: "24px", fontWeight: 500 }}>
-                  Catin uofessor eampden
+                  {product?.name}
                 </Typography>
                 <Typography
                   sx={{ fontSize: "24px", fontWeight: 600, color: "#fc6539" }}
                 >
-                  $79.00
+                  {product?.price}
                 </Typography>
                 <Typography variant="body1" sx={{ pt: 3, pb: 2 }}>
-                  we denounce with righteous indignation and dislike men who are
-                  so beguiled and demoralized by the charms of pleasure of the
-                  moment, so blinded by desire, that they cannot foresee the
-                  pain and trouble that are bound to ensue; and equal blame
-                  bel...
+                  {product?.description}
                 </Typography>
                 <Button variant="outlined">Add to cart</Button>
-                {props.productId}
               </Grid>
             </Grid>
           </Box>
