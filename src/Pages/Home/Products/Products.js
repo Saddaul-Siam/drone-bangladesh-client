@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Container,
   Typography,
@@ -13,6 +13,12 @@ import { makeStyles } from "@mui/styles";
 import AddToCartModal from "../ShoppingCart/AddToCartModal/AddToCartModal";
 
 const Products = ({ handleOpen, handleClose, open }) => {
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:5000/products")
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+  }, []);
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -57,222 +63,46 @@ const Products = ({ handleOpen, handleClose, open }) => {
       </Box>
       <Box sx={{ my: 8 }}>
         <Carousel ssr responsive={responsive}>
-          <Box>
-            <Card
-              sx={{ maxWidth: 260, mb: 2 }}
-              variant="outlined"
-              className={cardHover}
-            >
-              <CardMedia
-                component="img"
-                height="260"
-                image="https://cdn.shopify.com/s/files/1/0111/9135/3402/products/products-2_4d1d91f8-cb04-4e5a-bc4d-2198d6e3ec90_large.jpg?v=1621479845"
-                alt="Paella dish"
-              />
-              <CardContent>
-                <Typography sx={{ fontWeight: 500, fontSize: "18px" }}>
-                  Onisw dia vansi kanei
-                </Typography>
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    pt: 2,
-                  }}
-                >
-                  <Box>
-                    <Typography
-                      sx={{
-                        fontSize: 20,
-                        fontWeight: 700,
-                        color: "#fc6539",
-                      }}
-                    >
-                      $80
-                    </Typography>
+          {products?.map((product) => (
+            <Box>
+              <Card
+                sx={{ maxWidth: 260, mb: 2 }}
+                variant="outlined"
+                className={cardHover}
+              >
+                <CardMedia component="img" height="260" image={product.img} />
+                <CardContent>
+                  <Typography sx={{ fontWeight: 500, fontSize: "18px" }}>
+                    Onisw dia vansi kanei
+                  </Typography>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      pt: 2,
+                    }}
+                  >
+                    <Box>
+                      <Typography
+                        sx={{
+                          fontSize: 20,
+                          fontWeight: 700,
+                          color: "#fc6539",
+                        }}
+                      >
+                        $80
+                      </Typography>
+                    </Box>
+                    <Box>
+                      <Button /* onClick={handleOpen} */ variant="outlined">
+                        Add to cart
+                      </Button>
+                    </Box>
                   </Box>
-                  <Box>
-                    <Button onClick={handleOpen} variant="outlined">
-                      Add to cart
-                    </Button>
-                  </Box>
-                </Box>
-              </CardContent>
-            </Card>
-          </Box>
-          <Card sx={{ maxWidth: 260 }} variant="outlined" className={cardHover}>
-            <CardMedia
-              component="img"
-              height="260"
-              image="https://cdn.shopify.com/s/files/1/0111/9135/3402/articles/drone-blog-1_600x400_crop_center.png?v=1620464459"
-              alt="Paella dish"
-            />
-            <CardContent>
-              <Typography sx={{ fontWeight: 500, fontSize: "18px" }}>
-                Onisw dia vansi kanei
-              </Typography>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  pt: 2,
-                }}
-              >
-                <Box>
-                  <Typography
-                    sx={{
-                      fontSize: 20,
-                      fontWeight: 700,
-                      color: "#fc6539",
-                    }}
-                  >
-                    $80
-                  </Typography>
-                </Box>
-                <Box>
-                  <Button variant="outlined">Add to cart</Button>
-                </Box>
-              </Box>
-            </CardContent>
-          </Card>
-          <Card sx={{ maxWidth: 260 }} variant="outlined" className={cardHover}>
-            <CardMedia
-              component="img"
-              height="260"
-              image="https://cdn.shopify.com/s/files/1/0111/9135/3402/products/products-1_large.jpg?v=1621479782"
-              alt="Paella dish"
-            />
-            <CardContent>
-              <Typography sx={{ fontWeight: 500, fontSize: "18px" }}>
-                Onisw dia vansi kanei
-              </Typography>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  pt: 2,
-                }}
-              >
-                <Box>
-                  <Typography
-                    sx={{
-                      fontSize: 20,
-                      fontWeight: 700,
-                      color: "#fc6539",
-                    }}
-                  >
-                    $80
-                  </Typography>
-                </Box>
-                <Box>
-                  <Button variant="outlined">Add to cart</Button>
-                </Box>
-              </Box>
-            </CardContent>
-          </Card>
-          <Card sx={{ maxWidth: 260 }} variant="outlined" className={cardHover}>
-            <CardMedia
-              component="img"
-              height="260"
-              image="https://cdn.shopify.com/s/files/1/0111/9135/3402/products/products-5_9eaffd1c-bd62-4516-847b-696535d476e0_large.jpg?v=1621479916"
-              alt="Paella dish"
-            />
-            <CardContent>
-              <Typography sx={{ fontWeight: 500, fontSize: "18px" }}>
-                Onisw dia vansi kanei
-              </Typography>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  pt: 2,
-                }}
-              >
-                <Box>
-                  <Typography
-                    sx={{
-                      fontSize: 20,
-                      fontWeight: 700,
-                      color: "#fc6539",
-                    }}
-                  >
-                    $80
-                  </Typography>
-                </Box>
-                <Box>
-                  <Button variant="outlined">Add to cart</Button>
-                </Box>
-              </Box>
-            </CardContent>
-          </Card>
-          <Card sx={{ maxWidth: 260 }} variant="outlined" className={cardHover}>
-            <CardMedia
-              component="img"
-              height="260"
-              image="https://cdn.shopify.com/s/files/1/0111/9135/3402/products/products-4_9b4f8403-741b-40b2-9bce-503569b7d797_large.jpg?v=1621479892"
-            />
-            <CardContent>
-              <Typography sx={{ fontWeight: 500, fontSize: "18px" }}>
-                Onisw dia vansi kanei
-              </Typography>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  pt: 2,
-                }}
-              >
-                <Box>
-                  <Typography
-                    sx={{
-                      fontSize: 20,
-                      fontWeight: 700,
-                      color: "#fc6539",
-                    }}
-                  >
-                    $80
-                  </Typography>
-                </Box>
-                <Box>
-                  <Button variant="outlined">Add to cart</Button>
-                </Box>
-              </Box>
-            </CardContent>
-          </Card>
-          <Card sx={{ maxWidth: 260 }} variant="outlined" className={cardHover}>
-            <CardMedia
-              component="img"
-              height="260"
-              image="https://cdn.shopify.com/s/files/1/0111/9135/3402/products/products-8_eb34ce5a-d77e-4eac-83dc-8c19961cb877_large.jpg?v=1621482116"
-            />
-            <CardContent>
-              <Typography sx={{ fontWeight: 500, fontSize: "18px" }}>
-                Onisw dia vansi kanei
-              </Typography>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  pt: 2,
-                }}
-              >
-                <Box>
-                  <Typography
-                    sx={{
-                      fontSize: 20,
-                      fontWeight: 700,
-                      color: "#fc6539",
-                    }}
-                  >
-                    $80
-                  </Typography>
-                </Box>
-                <Box>
-                  <Button variant="outlined">Add to cart</Button>
-                </Box>
-              </Box>
-            </CardContent>
-          </Card>
+                </CardContent>
+              </Card>
+            </Box>
+          ))}
         </Carousel>
       </Box>
       <AddToCartModal
