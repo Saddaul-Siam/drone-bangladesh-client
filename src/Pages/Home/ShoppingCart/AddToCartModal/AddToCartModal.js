@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -18,21 +18,27 @@ const style = {
   p: 4,
 };
 
-const AddToCartModal = ({ handleClose, open, productId }) => {
+const AddToCartModal = (props) => {
+  console.log(props.productId);
+  useEffect(() => {
+    fetch(`http://localhost:5000/product/${props?.productId}`)
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  }, [props?.productId]);
   return (
     <div>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
-        open={open}
-        onClose={handleClose}
+        open={props.open}
+        onClose={props.handleClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500,
         }}
       >
-        <Fade in={open}>
+        <Fade in={props.open}>
           <Box sx={style}>
             <Grid container spacing={5}>
               <Grid item xs={6} md={6}>
@@ -59,7 +65,7 @@ const AddToCartModal = ({ handleClose, open, productId }) => {
                   bel...
                 </Typography>
                 <Button variant="outlined">Add to cart</Button>
-                {productId}
+                {props.productId}
               </Grid>
             </Grid>
           </Box>
