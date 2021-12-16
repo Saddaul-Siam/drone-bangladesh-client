@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import { Button, Grid } from "@mui/material";
 import useAuth from "../../../../Hooks/useAuth";
 import { Navigate, useLocation } from "react-router-dom";
+import { addToDb } from "../../../../utilities/fakedb";
 
 const style = {
   position: "absolute",
@@ -32,17 +33,23 @@ const AddToCartModal = (props) => {
   }, [props?.productId]);
 
   const handleAddToCart = () => {
-    product.email = `${user.email}`;
-    product.status = "pending";
-    product.quantity = 1;
-    fetch(`http://localhost:5000/addToCart`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(product),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    // product.email = `${user.email}`;
+    // product.status = "pending";
+    // product.quantity = 1;
+    // fetch(`http://localhost:5000/addToCart`, {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(product),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => console.log(data));
+    // localStorage.setItem("cart", JSON.stringify(product._id));
+    // console.log(localStorage.getItem("cart"));
+
+    // save to localStorage
+    addToDb(product._id);
   };
+
   return (
     <div>
       <Modal
