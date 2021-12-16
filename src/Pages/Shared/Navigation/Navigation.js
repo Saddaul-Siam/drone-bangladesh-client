@@ -270,18 +270,18 @@ const Navigation = (props) => {
                     <Button color="inherit">Login</Button>
                   </Link>
                 )}
-                {/* <Link
+                <Link
                   style={{ textDecoration: "none", color: "white" }}
-                  to="/login"
-                > */}
-                <Button color="inherit">
-                  <IconButton size="large" color="inherit">
-                    <Badge badgeContent={cart.length} color="error">
-                      <LocalMallIcon />{" "}
-                    </Badge>
-                  </IconButton>
-                </Button>
-                {/* </Link> */}
+                  to="/dashboard/cart"
+                >
+                  <Button color="inherit">
+                    <IconButton size="large" color="inherit">
+                      <Badge badgeContent={cart.length} color="error">
+                        <LocalMallIcon />{" "}
+                      </Badge>
+                    </IconButton>
+                  </Button>
+                </Link>
 
                 {user.email && (
                   <IconButton
