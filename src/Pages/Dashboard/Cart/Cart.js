@@ -7,7 +7,7 @@ import {
   removeFromDb,
 } from "../../../utilities/fakedb";
 import { Link } from "react-router-dom";
-import CartDetails from "./CartDetails";
+import useAuth from "../../../Hooks/useAuth";
 
 const Root = styled("div")`
   table {
@@ -30,6 +30,7 @@ const Root = styled("div")`
 export default function Cart() {
   const [products, setProducts] = useState([]);
   const [carts, setCarts] = useState([]);
+  const { user } = useAuth();
   useEffect(() => {
     fetch("http://localhost:5000/products")
       .then((res) => res.json())
@@ -68,6 +69,22 @@ export default function Cart() {
   const handleRemoveCart = (id) => {
     removeFromDb(id);
     window.location.reload();
+  };
+  const handleOrder = () => {
+    const order = {};
+    order.user = user.displayName;
+    order.email = user.email;
+    order.order = carts;
+    order.status = "pending";
+    console.log(order);
+    // console.log(carts);
+    fetch("http://localhost:5000/order", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(order),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   };
   return (
     <>
@@ -157,13 +174,14 @@ export default function Cart() {
                 <Typography variant="h5">$ {totalShoppingCost}</Typography>
               </Grid>
             </Grid>
-            <Button variant="contained" sx={{ mt: 3, align: "left" }}>
+            <Button
+              variant="contained"
+              sx={{ mt: 3, align: "left" }}
+              onClick={handleOrder}
+            >
               Proceed to Checkout
             </Button>
           </Box>
-        </Box>
-        <Box sx={{ display: "none" }}>
-          <CartDetails carts={carts} totalShoppingCost={totalShoppingCost} />
         </Box>
       </Container>
     </>
