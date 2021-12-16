@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { styled } from "@mui/system";
-import { Container } from "@mui/material";
-import { getStoredCart } from "../../../utilities/fakedb";
+import { Box, styled } from "@mui/system";
+import { Button, Container, Grid } from "@mui/material";
+import {
+  clearTheCart,
+  getStoredCart,
+  removeFromDb,
+} from "../../../utilities/fakedb";
+import { Link } from "react-router-dom";
 
 const Root = styled("div")`
   table {
@@ -51,7 +56,14 @@ export default function Cart() {
     const total = parseInt(product.price) * parseInt(product.quantity);
     product.total = total;
   }
-
+  const handleClearCart = () => {
+    clearTheCart();
+    window.location.reload();
+  };
+  const handleRemoveCart = (id) => {
+    removeFromDb(id);
+    window.location.reload();
+  };
   return (
     <Container>
       <Root>
@@ -61,7 +73,7 @@ export default function Cart() {
               <th>Image</th>
               <th style={{ width: 400 }}>Product</th>
               <th style={{ width: 199 }}>Price</th>
-              <th style={{ width: 600 }}>Quantity</th>
+              <th style={{ width: 400 }}>Quantity</th>
               <th style={{ width: 199 }}>Total</th>
               <th style={{ width: 199 }}>Remove</th>
             </tr>
@@ -74,14 +86,40 @@ export default function Cart() {
                 </td>
                 <td style={{ width: 400 }}>{cart.name}</td>
                 <td style={{ width: 199 }}>{cart.price}</td>
-                <td style={{ width: 600 }}>{cart.quantity}</td>
+                <td style={{ width: 400}}>{cart.quantity}</td>
                 <td style={{ width: 199 }}>{cart.total}</td>
-                <td style={{ width: 199 }}>X</td>
+                <td style={{ width: 199 }}>
+                  <Button
+                    variant="text"
+                    onClick={() => handleRemoveCart(cart._id)}
+                  >
+                    X
+                  </Button>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </Root>
+      <Box sx={{ pt: 3 }}>
+        <Grid container spacing={2}>
+          <Grid item xs={8}>
+            <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+              <Button variant="contained">CONTINUE SHOPPING </Button>
+            </Link>
+          </Grid>
+          <Grid
+            item
+            xs={4}
+            sx={{ display: "flex", justifyContent: "space-between" }}
+          >
+            <Button variant="contained">UPDATE CART</Button>
+            <Button variant="contained" onClick={handleClearCart}>
+              CLEAR CART
+            </Button>
+          </Grid>
+        </Grid>
+      </Box>
     </Container>
   );
 }
