@@ -5,6 +5,8 @@ import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import Typography from "@mui/material/Typography";
 import { Button, Grid } from "@mui/material";
+import useAuth from "../../../../Hooks/useAuth";
+import { Navigate, useLocation } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -19,12 +21,28 @@ const style = {
 };
 
 const AddToCartModal = (props) => {
+  const { user } = useAuth();
+  const location = useLocation();
   const [product, setProduct] = useState({});
+  // console.log(product);
   useEffect(() => {
     fetch(`http://localhost:5000/product/${props?.productId}`)
       .then((res) => res.json())
       .then((data) => setProduct(data));
   }, [props?.productId]);
+
+  const handleAddToCart = () => {
+    product.email = `${user.email}`;
+    product.status = "pending";
+    product.quantity = 1;
+    fetch(`http://localhost:5000/addToCart`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(product),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  };
   return (
     <div>
       <Modal
@@ -56,7 +74,13 @@ const AddToCartModal = (props) => {
                 <Typography variant="body1" sx={{ pt: 3, pb: 2 }}>
                   {product?.description}
                 </Typography>
-                <Button variant="outlined">Add to cart</Button>
+                {user.email ? (
+                  <Button onClick={handleAddToCart} variant="outlined">
+                    Add to cart
+                  </Button>
+                ) : (
+                  <Navigate to="/login" state={{ from: location }} />
+                )}
               </Grid>
             </Grid>
           </Box>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -9,7 +9,7 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { Link, NavLink } from "react-router-dom";
-import { Button, Container, Fab, Zoom } from "@mui/material";
+import { Badge, Button, Container, Fab, Zoom } from "@mui/material";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Slide from "@mui/material/Slide";
 import PropTypes from "prop-types";
@@ -18,6 +18,7 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Avatar from "@mui/material/Avatar";
 import PrimaryButton from "../../../StyledComponent/MuiButton";
 import useAuth from "../../../Hooks/useAuth";
+import LocalMallIcon from "@mui/icons-material/LocalMall";
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -77,6 +78,12 @@ ScrollTop.propTypes = {
 };
 
 const Navigation = (props) => {
+  const [cart, setCart] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:5000/myCart")
+      .then((res) => res.json())
+      .then((data) => setCart(data));
+  }, [cart]);
   const useStyle = makeStyles({
     navbarColor: {
       backgroundColor: "#6047EC !important",
@@ -263,6 +270,19 @@ const Navigation = (props) => {
                     <Button color="inherit">Login</Button>
                   </Link>
                 )}
+                {/* <Link
+                  style={{ textDecoration: "none", color: "white" }}
+                  to="/login"
+                > */}
+                <Button color="inherit">
+                  <IconButton size="large" color="inherit">
+                    <Badge badgeContent={cart.length} color="error">
+                      <LocalMallIcon />{" "}
+                    </Badge>
+                  </IconButton>
+                </Button>
+                {/* </Link> */}
+
                 {user.email && (
                   <IconButton
                     size="large"
