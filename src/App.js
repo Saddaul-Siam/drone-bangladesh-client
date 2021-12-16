@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import AuthProvider from "./Context/AuthProvider";
 import Cart from "./Pages/Dashboard/Cart/Cart";
 import CartDetails from "./Pages/Dashboard/Cart/CartDetails";
+import ContactInformation from "./Pages/Dashboard/Cart/ContactInformation";
 import Dashboard from "./Pages/Dashboard/Dashboard/Dashboard";
 import DashboardHome from "./Pages/Dashboard/DashboardHome/DashboardHome";
 import Home from "./Pages/Home/Home/Home";
@@ -19,6 +20,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/cartDetails" element={<PrivateRoute>< CartDetails /></PrivateRoute>} />
+          <Route path="/contactInformation" element={<PrivateRoute>< ContactInformation /></PrivateRoute>} />
 
           
           <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} >
