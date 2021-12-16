@@ -3,6 +3,7 @@ import AuthProvider from "./Context/AuthProvider";
 import Cart from "./Pages/Dashboard/Cart/Cart";
 import CartDetails from "./Pages/Dashboard/Cart/CartDetails";
 import ContactInformation from "./Pages/Dashboard/Cart/ContactInformation";
+import Payment from "./Pages/Dashboard/Cart/Payment";
 import Dashboard from "./Pages/Dashboard/Dashboard/Dashboard";
 import DashboardHome from "./Pages/Dashboard/DashboardHome/DashboardHome";
 import Home from "./Pages/Home/Home/Home";
@@ -21,6 +22,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/cartDetails" element={<PrivateRoute>< CartDetails /></PrivateRoute>} />
           <Route path="/contactInformation" element={<PrivateRoute>< ContactInformation /></PrivateRoute>} />
+          <Route path="/payment" element={<PrivateRoute>< Payment /></PrivateRoute>} />
 
           
           <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} >
