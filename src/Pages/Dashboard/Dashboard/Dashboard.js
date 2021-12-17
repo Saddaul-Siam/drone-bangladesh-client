@@ -168,14 +168,14 @@ export default function Dashboard() {
             </ListItem>
           </Link>
           <Link
-            to="/dashboard/review"
+            to="/dashboard/addReview"
             style={{ textDecoration: "none", color: "black" }}
           >
             <ListItem button>
               <ListItemIcon>
                 <RateReviewIcon />
               </ListItemIcon>
-              <ListItemText>Review</ListItemText>
+              <ListItemText>Add Review</ListItemText>
             </ListItem>
           </Link>
           <ListItem button onClick={logOut}>

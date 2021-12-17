@@ -120,7 +120,7 @@ export default function Cart() {
                       variant="text"
                       onClick={() => handleRemoveCart(cart._id)}
                     >
-                      X
+                      Remove
                     </Button>
                   </td>
                 </tr>
