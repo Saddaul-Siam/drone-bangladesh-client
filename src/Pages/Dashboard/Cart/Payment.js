@@ -47,9 +47,6 @@ const Payment = () => {
             <Typography variant="h6" sx={{ py: 3 }}>
               Payment
             </Typography>
-            <Typography variant="p" sx={{ py: 3 }}>
-              Payment Coming Soon
-            </Typography>
             {orders?.totalShoppingCost && (
               <Elements stripe={stripePromise}>
                 <CheckOutForm orders={orders} id={id} />

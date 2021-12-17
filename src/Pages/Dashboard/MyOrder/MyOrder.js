@@ -1,24 +1,65 @@
-import { Box, Container, Paper, Typography } from "@mui/material";
+import { Box, Button, Container, Paper, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import useAuth from "../../../Hooks/useAuth";
 
 const MyOrder = () => {
+  const Swal = require("sweetalert2");
   const { user } = useAuth();
   const [orders, setOrders] = useState([]);
-  // console.log(orders);
   useEffect(() => {
     fetch(`http://localhost:5000/orders/${user.email}`)
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, [user.email]);
 
+  const handleDeleteOrder = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "you will Cancel never back to many",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, cancel order ",
+      cancelButtonText: "No",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/order/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.acknowledged) {
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Your order cancel successful",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  window.location.reload();
+                }
+              });
+            }
+          });
+      }
+    });
+  };
   return (
     <Container>
       {orders.map((order) => (
         <Paper sx={{ my: 3, p: 2 }}>
-          <Typography>
-            Order <span style={{ color: "orange" }}># {order._id}</span>
-          </Typography>
+          <Box sx={{ display: "flex", justifyContent: "space-between", mb: 5 }}>
+            <Typography>
+              Order <span style={{ color: "orange" }}># {order._id}</span>
+            </Typography>
+            <Button
+              variant="outlined"
+              onClick={() => handleDeleteOrder(order._id)}
+            >
+              Cancel Order
+            </Button>
+          </Box>
           {order.order.map((od) => (
             <Box
               sx={{ display: "flex", justifyContent: "space-around", my: 2 }}

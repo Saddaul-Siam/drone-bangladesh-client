@@ -22,6 +22,10 @@ import LocalMallIcon from "@mui/icons-material/LocalMall";
 import RateReviewIcon from "@mui/icons-material/RateReview";
 import LogoutIcon from "@mui/icons-material/Logout";
 import useAuth from "../../../Hooks/useAuth";
+import AddTaskIcon from "@mui/icons-material/AddTask";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
+import ManageSearchIcon from "@mui/icons-material/ManageSearch";
 
 const drawerWidth = 240;
 
@@ -176,6 +180,64 @@ export default function Dashboard() {
                 <RateReviewIcon />
               </ListItemIcon>
               <ListItemText>Add Review</ListItemText>
+            </ListItem>
+          </Link>
+          <ListItem button onClick={logOut}>
+            <ListItemIcon>
+              <LogoutIcon />
+            </ListItemIcon>
+            <ListItemText>Log Out</ListItemText>
+          </ListItem>
+          <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+            <ListItem button>
+              <ListItemIcon>
+                <HomeIcon />
+              </ListItemIcon>
+              <ListItemText>Home</ListItemText>
+            </ListItem>
+          </Link>
+          <Link
+            to="/dashboard/addReview"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <ListItem button>
+              <ListItemIcon>
+                <AddTaskIcon />
+              </ListItemIcon>
+              <ListItemText>Add Product</ListItemText>
+            </ListItem>
+          </Link>
+          <Link
+            to="/dashboard/addReview"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <ListItem button>
+              <ListItemIcon>
+                <AdminPanelSettingsIcon />
+              </ListItemIcon>
+              <ListItemText>Make Admin</ListItemText>
+            </ListItem>
+          </Link>
+          <Link
+            to="/dashboard/addReview"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <ListItem button>
+              <ListItemIcon>
+                <ManageAccountsIcon />
+              </ListItemIcon>
+              <ListItemText>Manage All Order</ListItemText>
+            </ListItem>
+          </Link>
+          <Link
+            to="/dashboard/addReview"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <ListItem button>
+              <ListItemIcon>
+                <ManageSearchIcon />
+              </ListItemIcon>
+              <ListItemText>Manage Products</ListItemText>
             </ListItem>
           </Link>
           <ListItem button onClick={logOut}>
