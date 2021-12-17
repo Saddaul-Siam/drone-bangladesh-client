@@ -52,7 +52,7 @@ const Payment = () => {
             </Typography>
             {orders?.totalShoppingCost && (
               <Elements stripe={stripePromise}>
-                <CheckOutForm orders={orders} />
+                <CheckOutForm orders={orders} id={id} />
               </Elements>
             )}
           </Paper>

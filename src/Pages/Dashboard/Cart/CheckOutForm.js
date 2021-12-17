@@ -3,7 +3,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
 import { clearTheCart } from "../../../utilities/fakedb";
 
-const CheckOutForm = ({ orders }) => {
+const CheckOutForm = ({ orders, id }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [error, setError] = useState("");
@@ -68,6 +68,22 @@ const CheckOutForm = ({ orders }) => {
       console.log(paymentIntent);
       serProcessing(false);
       clearTheCart();
+      // save to database
+
+      const payment = {
+        amount: paymentIntent.amount,
+        created: paymentIntent.created,
+        transaction: paymentIntent.id,
+        laset4: paymentMethod.card.last4,
+      };
+
+      fetch(`http://localhost:5000/payment/${id}`, {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(payment),
+      })
+        .then((res) => res.json())
+        .then((data) => console.log(data));
     }
   };
   return (
