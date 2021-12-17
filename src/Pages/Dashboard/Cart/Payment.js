@@ -7,7 +7,7 @@ import useAuth from "../../../Hooks/useAuth";
 const Payment = () => {
   const { user } = useAuth();
   const [orders, setOrders] = useState({});
-  console.log(orders);
+  // console.log(orders);
   useEffect(() => {
     fetch(`http://localhost:5000/order/${user.email}`)
       .then((res) => res.json())
@@ -29,13 +29,15 @@ const Payment = () => {
             <Typography variant="h4" sx={{ pt: 3 }}>
               Drone bangladesh
             </Typography>
-            <Typography variant="h6" sx={{ py: 3 }}>
-              Contact: {orders.orderEmail} {orders.orderPhone}
-            </Typography>
-            <Typography variant="h6" sx={{ py: 3 }}>
-              Ship to: {orders.orderAddress} {orders.orderCity}{" "}
-              {orders.orderPostalCode}
-            </Typography>
+            <Box sx={{ border: 1, mt: 3, p: 1 }}>
+              <Typography variant="body1" sx={{ borderBottom: 1, py: 1 }}>
+                Contact: {orders.orderPhone}
+              </Typography>
+              <Typography variant="body1" sx={{ py: 1 }}>
+                Ship to: {orders.orderAddress} {orders.orderCity}
+                {orders.orderPostalCode}
+              </Typography>
+            </Box>
             <Typography variant="h6" sx={{ py: 3 }}>
               Payment
             </Typography>

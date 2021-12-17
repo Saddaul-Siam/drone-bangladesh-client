@@ -6,7 +6,7 @@ import {
   getStoredCart,
   removeFromDb,
 } from "../../../utilities/fakedb";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 
 const Root = styled("div")`
@@ -28,6 +28,7 @@ const Root = styled("div")`
 `;
 
 export default function Cart() {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [carts, setCarts] = useState([]);
   const { user } = useAuth();
@@ -76,15 +77,17 @@ export default function Cart() {
     order.email = user.email;
     order.order = carts;
     order.status = "pending";
-    console.log(order);
-    // console.log(carts);
     fetch("http://localhost:5000/order", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(order),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        if (data.acknowledged) {
+          navigate("/contactInformation");
+        }
+      });
   };
   return (
     <>

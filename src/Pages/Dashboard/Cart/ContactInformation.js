@@ -11,8 +11,10 @@ import React, { useEffect, useState } from "react";
 import CartDetails from "./CartDetails";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../Hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const ContactInformation = () => {
+  const navigate = useNavigate();
   const { user } = useAuth();
   const [orders, setOrders] = useState({});
 
@@ -25,14 +27,17 @@ const ContactInformation = () => {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     data._id = orders._id;
-    console.log(data);
     fetch("http://localhost:5000/order", {
       method: "PUT",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        if (data.acknowledged) {
+          navigate("/payment");
+        }
+      });
   };
   return (
     <Container>
