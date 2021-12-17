@@ -1,17 +1,18 @@
 import { Box, Typography } from "@mui/material";
 import Badge from "@mui/material/Badge";
 import React, { useEffect, useState } from "react";
-import useAuth from "../../../Hooks/useAuth";
+import { useParams } from "react-router-dom";
 
 const CartDetails = () => {
-  const { user } = useAuth();
+  const { id } = useParams();
+  // console.log(id);
   const [orders, setOrders] = useState({});
   const { order } = orders;
   useEffect(() => {
-    fetch(`http://localhost:5000/order/${user.email}`)
+    fetch(`http://localhost:5000/order/${id}`)
       .then((res) => res.json())
       .then((data) => setOrders(data));
-  }, [user.email]);
+  }, [id]);
 
   let totalShoppingCost = 0;
   for (const product in order) {

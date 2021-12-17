@@ -10,15 +10,13 @@ import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import CartDetails from "./CartDetails";
 import { useForm } from "react-hook-form";
-import useAuth from "../../../Hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const ContactInformation = () => {
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { id } = useParams();
   const [orders, setOrders] = useState({});
   const { order } = orders;
-  console.log(orders);
   let totalShoppingCost = 0;
   for (const product in order) {
     if (Object.hasOwnProperty.call(order, product)) {
@@ -26,12 +24,11 @@ const ContactInformation = () => {
       totalShoppingCost = totalShoppingCost + element.total;
     }
   }
-  console.log(totalShoppingCost);
   useEffect(() => {
-    fetch(`http://localhost:5000/order/${user.email}`)
+    fetch(`http://localhost:5000/order/${id}`)
       .then((res) => res.json())
       .then((data) => setOrders(data));
-  }, [user.email]);
+  }, [id]);
 
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
@@ -45,7 +42,7 @@ const ContactInformation = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
-          navigate("/payment");
+          navigate(`/payment/${orders._id}`);
         }
       });
   };

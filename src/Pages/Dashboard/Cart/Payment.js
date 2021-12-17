@@ -2,24 +2,23 @@ import { Container, Grid, Paper, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import CartDetails from "./CartDetails";
-import useAuth from "../../../Hooks/useAuth";
 import { loadStripe } from "@stripe/stripe-js";
 import CheckOutForm from "./CheckOutForm";
 import { Elements } from "@stripe/react-stripe-js";
+import { useParams } from "react-router-dom";
 
 const stripePromise = loadStripe(
   "pk_test_51K7XyvJKxcqmkg6L2nlek1vfb9SzEHP7sfruW01atdpByP9gzMRBXimosUx4Zje2JXzodQI0Inpvz0ZK7zLPEGB900ZSL5N3K7"
 );
 
 const Payment = () => {
-  const { user } = useAuth();
+  const { id } = useParams();
   const [orders, setOrders] = useState({});
-  console.log(orders);
   useEffect(() => {
-    fetch(`http://localhost:5000/order/${user.email}`)
+    fetch(`http://localhost:5000/order/${id}`)
       .then((res) => res.json())
       .then((data) => setOrders(data));
-  }, [user.email]);
+  }, [id]);
   return (
     <Container>
       <Grid container spacing={2}>
@@ -51,9 +50,11 @@ const Payment = () => {
             <Typography variant="p" sx={{ py: 3 }}>
               Payment Coming Soon
             </Typography>
-            <Elements stripe={stripePromise}>
-              <CheckOutForm />
-            </Elements>
+            {orders?.totalShoppingCost && (
+              <Elements stripe={stripePromise}>
+                <CheckOutForm orders={orders} />
+              </Elements>
+            )}
           </Paper>
         </Grid>
         <Grid item xs={12} md={6}>

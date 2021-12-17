@@ -1,9 +1,24 @@
+import { Alert, CircularProgress } from "@mui/material";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { clearTheCart } from "../../../utilities/fakedb";
 
-const CheckOutForm = () => {
+const CheckOutForm = ({ orders }) => {
   const stripe = useStripe();
   const elements = useElements();
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [processing, serProcessing] = useState(false);
+  const [clientSecret, serClientSecret] = useState("");
+  useEffect(() => {
+    fetch(`http://localhost:5000/create-payment-intent`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(orders),
+    })
+      .then((res) => res.json())
+      .then((data) => serClientSecret(data.clientSecret));
+  }, [orders]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -17,40 +32,74 @@ const CheckOutForm = () => {
     if (card == null) {
       return;
     }
-
+    serProcessing(true);
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card,
     });
 
     if (error) {
-      console.log("[error]", error);
+      setError(error.message);
+      setSuccess("");
     } else {
-      console.log("[PaymentMethod]", paymentMethod);
+      setError("");
+      console.log(paymentMethod);
+    }
+    // payment intent
+    const { paymentIntent, error: intentError } =
+      await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: card,
+          billing_details: {
+            name: orders.orderName,
+            email: orders.orderEmail,
+            phone: orders.orderPhone,
+            address: orders.orderAddress,
+          },
+        },
+      });
+
+    if (intentError) {
+      setError(intentError.message);
+      setSuccess("");
+    } else {
+      setError("");
+      setSuccess("Your payment processing was successful");
+      console.log(paymentIntent);
+      serProcessing(false);
+      clearTheCart();
     }
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <CardElement
-        options={{
-          style: {
-            base: {
-              fontSize: "16px",
-              color: "#424770",
-              "::placeholder": {
-                color: "#aab7c4",
+    <>
+      <form onSubmit={handleSubmit}>
+        <CardElement
+          options={{
+            style: {
+              base: {
+                fontSize: "16px",
+                color: "#424770",
+                "::placeholder": {
+                  color: "#aab7c4",
+                },
+              },
+              invalid: {
+                color: "#9e2146",
               },
             },
-            invalid: {
-              color: "#9e2146",
-            },
-          },
-        }}
-      />
-      <button type="submit" disabled={!stripe}>
-        Pay
-      </button>
-    </form>
+          }}
+        />
+        {processing ? (
+          <CircularProgress />
+        ) : (
+          <button type="submit" disabled={!stripe}>
+            Pay $ {orders?.totalShoppingCost}
+          </button>
+        )}
+      </form>
+      {error && <Alert severity="error">{error}</Alert>}
+      {success && <Alert severity="success">{success}</Alert>}
+    </>
   );
 };
 
