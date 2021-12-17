@@ -1,6 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 import AuthProvider from "./Context/AuthProvider";
 import AddReview from "./Pages/Dashboard/AddReview/AddReview";
+import AddProducts from "./Pages/Dashboard/Admin/AddProducts/AddProducts";
+import MakeAdmin from "./Pages/Dashboard/Admin/MakeAdmin/MakeAdmin";
+import ManageAllOrders from "./Pages/Dashboard/Admin/ManageAllOrders/ManageAllOrders";
+import ManageAllProducts from "./Pages/Dashboard/Admin/ManageAllProducts/ManageAllProducts";
 import Cart from "./Pages/Dashboard/Cart/Cart";
 import CartDetails from "./Pages/Dashboard/Cart/CartDetails";
 import ContactInformation from "./Pages/Dashboard/Cart/ContactInformation";
@@ -31,6 +35,11 @@ function App() {
             <Route path="/dashboard/cart" element={<PrivateRoute>< Cart /></PrivateRoute>} />
             <Route path="/dashboard/myOrder" element={<PrivateRoute>< MyOrder /></PrivateRoute>} />
             <Route path="/dashboard/addReview" element={<PrivateRoute>< AddReview /></PrivateRoute>} />
+
+            <Route path="/dashboard/makeAdmin" element={<PrivateRoute>< MakeAdmin /></PrivateRoute>} />
+            <Route path="/dashboard/addProducts" element={<PrivateRoute>< AddProducts /></PrivateRoute>} />
+            <Route path="/dashboard/manageAllOrders" element={<PrivateRoute>< ManageAllOrders /></PrivateRoute>} />
+            <Route path="/dashboard/manageAllProducts" element={<PrivateRoute>< ManageAllProducts /></PrivateRoute>} />
           </Route>
           
         </Routes>

@@ -117,19 +117,19 @@ const useFirebase = () => {
   // save user information
   const saveUser = (email, displayName, method) => {
     const user = { email, displayName };
-    // fetch(`https://bike-buzz.herokuapp.com/users`, {
-    //   method: method,
-    //   headers: { "content-Type": "application/json" },
-    //   body: JSON.stringify(user),
-    // })
-    //   .then((res) => res.json())
-    //   .then((result) => console.log(result));
+    fetch(`http://localhost:5000/users`, {
+      method: method,
+      headers: { "content-Type": "application/json" },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((result) => console.log(result));
   };
 
   useEffect(() => {
-    // fetch(`https://bike-buzz.herokuapp.com/users/${user.email}`)
-    //   .then((res) => res.json())
-    //   .then((data) => setAdmin(data.admin));
+    fetch(`http://localhost:5000/users/${user.email}`)
+      .then((res) => res.json())
+      .then((data) => setAdmin(data.admin));
   }, [user.email]);
 
   return {

@@ -197,7 +197,7 @@ export default function Dashboard() {
             </ListItem>
           </Link>
           <Link
-            to="/dashboard/addReview"
+            to="/dashboard/AddProducts"
             style={{ textDecoration: "none", color: "black" }}
           >
             <ListItem button>
@@ -208,7 +208,7 @@ export default function Dashboard() {
             </ListItem>
           </Link>
           <Link
-            to="/dashboard/addReview"
+            to="/dashboard/makeAdmin"
             style={{ textDecoration: "none", color: "black" }}
           >
             <ListItem button>
@@ -219,7 +219,7 @@ export default function Dashboard() {
             </ListItem>
           </Link>
           <Link
-            to="/dashboard/addReview"
+            to="/dashboard/manageAllOrders"
             style={{ textDecoration: "none", color: "black" }}
           >
             <ListItem button>
@@ -230,7 +230,7 @@ export default function Dashboard() {
             </ListItem>
           </Link>
           <Link
-            to="/dashboard/addReview"
+            to="/dashboard/manageAllProducts"
             style={{ textDecoration: "none", color: "black" }}
           >
             <ListItem button>
