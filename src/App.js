@@ -6,6 +6,7 @@ import ContactInformation from "./Pages/Dashboard/Cart/ContactInformation";
 import Payment from "./Pages/Dashboard/Cart/Payment";
 import Dashboard from "./Pages/Dashboard/Dashboard/Dashboard";
 import DashboardHome from "./Pages/Dashboard/DashboardHome/DashboardHome";
+import MyOrder from "./Pages/Dashboard/MyOrder/MyOrder";
 import Home from "./Pages/Home/Home/Home";
 import Login from "./Pages/Home/Login/Login/Login";
 import Register from "./Pages/Home/Login/Register/Register";
@@ -28,6 +29,7 @@ function App() {
           <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} >
             <Route path="/dashboard" element={<PrivateRoute><DashboardHome /></PrivateRoute>} />
             <Route path="/dashboard/cart" element={<PrivateRoute>< Cart /></PrivateRoute>} />
+            <Route path="/dashboard/myOrder" element={<PrivateRoute>< MyOrder /></PrivateRoute>} />
 
           </Route>
         </Routes>

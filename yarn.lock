@@ -11983,6 +11983,11 @@
     "unquote" "~1.1.1"
     "util.promisify" "~1.0.0"
 
+"sweetalert2@^11.3.0":
+  "integrity" "sha512-C0TFp0VLxgx+PmhJ0mL8qzx+iYjnCLdDbvQHKY6KAGI+xwawMvLkStPgw2LmJl6itaDhR/qLQStPFIbr1VK9Ow=="
+  "resolved" "https://registry.npmjs.org/sweetalert2/-/sweetalert2-11.3.0.tgz"
+  "version" "11.3.0"
+
 "swiper@^6.8.4":
   "integrity" "sha512-O+buF9Q+sMA0H7luMS8R59hCaJKlpo8PXhQ6ZYu6Rn2v9OsFd4d1jmrv14QvxtQpKAvL/ZiovEeANI/uDGet7g=="
   "resolved" "https://registry.npmjs.org/swiper/-/swiper-6.8.4.tgz"

@@ -15,8 +15,13 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
 import { Link, Outlet } from "react-router-dom";
+import HomeIcon from "@mui/icons-material/Home";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import LocalMallIcon from "@mui/icons-material/LocalMall";
+import RateReviewIcon from "@mui/icons-material/RateReview";
+import LogoutIcon from "@mui/icons-material/Logout";
+import useAuth from "../../../Hooks/useAuth";
 
 const drawerWidth = 240;
 
@@ -86,6 +91,7 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export default function Dashboard() {
+  const { logOut } = useAuth();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -134,7 +140,7 @@ export default function Dashboard() {
           <Link to="/" style={{ textDecoration: "none", color: "black" }}>
             <ListItem button>
               <ListItemIcon>
-                <InboxIcon />
+                <HomeIcon />
               </ListItemIcon>
               <ListItemText>Home</ListItemText>
             </ListItem>
@@ -145,11 +151,39 @@ export default function Dashboard() {
           >
             <ListItem button>
               <ListItemIcon>
-                <InboxIcon />
+                <LocalMallIcon />
               </ListItemIcon>
-              <ListItemText>Book</ListItemText>
+              <ListItemText>Cart</ListItemText>
             </ListItem>
           </Link>
+          <Link
+            to="/dashboard/myOrder"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <ListItem button>
+              <ListItemIcon>
+                <ShoppingCartIcon />
+              </ListItemIcon>
+              <ListItemText>My Order</ListItemText>
+            </ListItem>
+          </Link>
+          <Link
+            to="/dashboard/review"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <ListItem button>
+              <ListItemIcon>
+                <RateReviewIcon />
+              </ListItemIcon>
+              <ListItemText>Review</ListItemText>
+            </ListItem>
+          </Link>
+          <ListItem button onClick={logOut}>
+            <ListItemIcon>
+              <LogoutIcon />
+            </ListItemIcon>
+            <ListItemText>Log Out</ListItemText>
+          </ListItem>
         </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>

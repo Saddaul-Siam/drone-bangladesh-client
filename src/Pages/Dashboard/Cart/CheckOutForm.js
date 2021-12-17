@@ -2,9 +2,12 @@ import { Alert, CircularProgress } from "@mui/material";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
 import { clearTheCart } from "../../../utilities/fakedb";
+import { useNavigate } from "react-router-dom";
 
 const CheckOutForm = ({ orders, id }) => {
+  const navigate = useNavigate();
   const stripe = useStripe();
+  const Swal = require("sweetalert2");
   const elements = useElements();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -43,7 +46,7 @@ const CheckOutForm = ({ orders, id }) => {
       setSuccess("");
     } else {
       setError("");
-      console.log(paymentMethod);
+      // console.log(paymentMethod);
     }
     // payment intent
     const { paymentIntent, error: intentError } =
@@ -65,7 +68,6 @@ const CheckOutForm = ({ orders, id }) => {
     } else {
       setError("");
       setSuccess("Your payment processing was successful");
-      console.log(paymentIntent);
       serProcessing(false);
       clearTheCart();
       // save to database
@@ -83,9 +85,24 @@ const CheckOutForm = ({ orders, id }) => {
         body: JSON.stringify(payment),
       })
         .then((res) => res.json())
-        .then((data) => console.log(data));
+        .then((data) => {
+          if (data.acknowledged) {
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Your payment processing was successful",
+            }).then((result) => {
+              if (result.isConfirmed) {
+                navigate("/dashboard/myOrder");
+              } else {
+                navigate("/dashboard/myOrder");
+              }
+            });
+          }
+        });
     }
   };
+
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -108,13 +125,12 @@ const CheckOutForm = ({ orders, id }) => {
         {processing ? (
           <CircularProgress />
         ) : (
-          <button type="submit" disabled={!stripe}>
+          <button type="submit" disabled={!stripe || success}>
             Pay $ {orders?.totalShoppingCost}
           </button>
         )}
       </form>
       {error && <Alert severity="error">{error}</Alert>}
-      {success && <Alert severity="success">{success}</Alert>}
     </>
   );
 };
