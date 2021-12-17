@@ -17,7 +17,16 @@ const ContactInformation = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const [orders, setOrders] = useState({});
-
+  const { order } = orders;
+  console.log(orders);
+  let totalShoppingCost = 0;
+  for (const product in order) {
+    if (Object.hasOwnProperty.call(order, product)) {
+      const element = order[product];
+      totalShoppingCost = totalShoppingCost + element.total;
+    }
+  }
+  console.log(totalShoppingCost);
   useEffect(() => {
     fetch(`http://localhost:5000/order/${user.email}`)
       .then((res) => res.json())
@@ -26,6 +35,7 @@ const ContactInformation = () => {
 
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
+    data.totalShoppingCost = totalShoppingCost;
     data._id = orders._id;
     fetch("http://localhost:5000/order", {
       method: "PUT",

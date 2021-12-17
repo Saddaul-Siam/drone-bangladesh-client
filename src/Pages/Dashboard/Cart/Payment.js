@@ -3,11 +3,18 @@ import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import CartDetails from "./CartDetails";
 import useAuth from "../../../Hooks/useAuth";
+import { loadStripe } from "@stripe/stripe-js";
+import CheckOutForm from "./CheckOutForm";
+import { Elements } from "@stripe/react-stripe-js";
+
+const stripePromise = loadStripe(
+  "pk_test_51K7XyvJKxcqmkg6L2nlek1vfb9SzEHP7sfruW01atdpByP9gzMRBXimosUx4Zje2JXzodQI0Inpvz0ZK7zLPEGB900ZSL5N3K7"
+);
 
 const Payment = () => {
   const { user } = useAuth();
   const [orders, setOrders] = useState({});
-  // console.log(orders);
+  console.log(orders);
   useEffect(() => {
     fetch(`http://localhost:5000/order/${user.email}`)
       .then((res) => res.json())
@@ -44,6 +51,9 @@ const Payment = () => {
             <Typography variant="p" sx={{ py: 3 }}>
               Payment Coming Soon
             </Typography>
+            <Elements stripe={stripePromise}>
+              <CheckOutForm />
+            </Elements>
           </Paper>
         </Grid>
         <Grid item xs={12} md={6}>
