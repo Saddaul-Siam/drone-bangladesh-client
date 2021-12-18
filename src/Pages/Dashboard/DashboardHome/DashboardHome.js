@@ -9,7 +9,7 @@ const DashboardHome = () => {
       <Typography
         variant="h4"
         sx={{
-          fontWeight: "bold",
+          fontWeight: "bold", 
           color: "#FF1493",
           display: "flex",
           justifyContent: "center",
