@@ -1,6 +1,6 @@
 # Website Detail
 
-Live website link : (https://drone-bangladesh.web.app/)
+[Live website link ](https://drone-bangladesh.web.app/)
 
 1 The home page will have a header (simple navbar), banner, products, reviews,
 and footer. On the home page, the products will have a maximum of 6
