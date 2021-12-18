@@ -25,7 +25,6 @@ const AddToCartModal = (props) => {
   const { user } = useAuth();
   const location = useLocation();
   const [product, setProduct] = useState({});
-  // console.log(product);
   useEffect(() => {
     fetch(
       `https://glacial-earth-17759.herokuapp.com/product/${props?.productId}`
@@ -35,21 +34,9 @@ const AddToCartModal = (props) => {
   }, [props?.productId]);
 
   const handleAddToCart = () => {
-    // product.email = `${user.email}`;
-    // product.status = "pending";
-    // product.quantity = 1;
-    // fetch(`https://glacial-earth-17759.herokuapp.com/addToCart`, {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(product),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => console.log(data));
-    // localStorage.setItem("cart", JSON.stringify(product._id));
-    // console.log(localStorage.getItem("cart"));
-
-    // save to localStorage
     addToDb(product._id);
+
+    alert("Products add to cart successfully");
   };
 
   return (

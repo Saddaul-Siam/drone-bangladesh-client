@@ -73,7 +73,7 @@ const ManageAllOrders = () => {
       )}
       <Box>
         {orders.map((order) => (
-          <Paper sx={{ my: 3, p: 2 }}>
+          <Paper sx={{ my: 3, p: 2 }} key={order._id}>
             <Box
               sx={{ display: "flex", justifyContent: "space-between", mb: 5 }}
             >
@@ -89,6 +89,7 @@ const ManageAllOrders = () => {
             </Box>
             {order.order.map((od) => (
               <Box
+                key={od._id}
                 sx={{ display: "flex", justifyContent: "space-around", my: 2 }}
               >
                 <img width="100px" src={od.img} alt="" />

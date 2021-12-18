@@ -3,6 +3,7 @@ import { Container, Typography, Box, Grid } from "@mui/material";
 import Explore from "./Explore";
 import AddToCartModal from "../Home/ShoppingCart/AddToCartModal/AddToCartModal";
 import Navigation from "../../Pages/Shared/Navigation/Navigation";
+import Footer from "../Shared/Footer/Footer";
 
 const Explores = ({ handleOpen, handleClose, open }) => {
   const [products, setProducts] = useState([]);
@@ -59,6 +60,7 @@ const Explores = ({ handleOpen, handleClose, open }) => {
           />
         </Box>
       </Container>
+      <Footer/>
     </>
   );
 };

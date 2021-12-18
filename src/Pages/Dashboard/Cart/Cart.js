@@ -28,6 +28,7 @@ const Root = styled("div")`
 `;
 
 export default function Cart() {
+  const Swal = require("sweetalert2");
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [carts, setCarts] = useState([]);
@@ -64,12 +65,38 @@ export default function Cart() {
     totalShoppingCost = totalShoppingCost + product.total;
   }
   const handleClearCart = () => {
-    clearTheCart();
-    window.location.reload();
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Clear The Cart",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        clearTheCart();
+        window.location.reload();
+      }
+    });
   };
   const handleRemoveCart = (id) => {
-    removeFromDb(id);
-    window.location.reload();
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Clear The Cart",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        removeFromDb(id);
+        window.location.reload();
+      }
+    });
   };
   const handleOrder = () => {
     const order = {};
