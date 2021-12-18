@@ -10,7 +10,7 @@ const MyOrder = () => {
     fetch(`http://localhost:5000/orders/${user.email}`)
       .then((res) => res.json())
       .then((data) => setOrders(data));
-  }, [user.email]);
+  }, [orders, user.email]);
 
   const handleDeleteOrder = (id) => {
     Swal.fire({
@@ -35,10 +35,6 @@ const MyOrder = () => {
                 position: "center",
                 icon: "success",
                 title: "Your order cancel successful",
-              }).then((result) => {
-                if (result.isConfirmed) {
-                  window.location.reload();
-                }
               });
             }
           });
@@ -47,6 +43,18 @@ const MyOrder = () => {
   };
   return (
     <Container>
+      <Typography
+        variant="h4"
+        sx={{
+          fontWeight: "bold",
+          color: "#FF1493",
+          display: "flex",
+          justifyContent: "center",
+          py: 5,
+        }}
+      >
+        My Order
+      </Typography>
       {orders.map((order) => (
         <Paper sx={{ my: 3, p: 2 }}>
           <Box sx={{ display: "flex", justifyContent: "space-between", mb: 5 }}>

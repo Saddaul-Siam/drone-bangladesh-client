@@ -93,6 +93,18 @@ export default function Cart() {
   return (
     <>
       <Container>
+        <Typography
+          variant="h4"
+          sx={{
+            fontWeight: "bold",
+            color: "#FF1493",
+            display: "flex",
+            justifyContent: "center",
+            py: 3,
+          }}
+        >
+          My Order
+        </Typography>
         <Root>
           <table style={{ minWidth: 500 }} aria-label="custom pagination table">
             <thead>

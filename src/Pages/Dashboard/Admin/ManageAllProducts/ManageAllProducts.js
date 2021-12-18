@@ -34,6 +34,7 @@ const ManageAllProducts = () => {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
+              <TableCell>Image</TableCell>
               <TableCell>Name</TableCell>
               <TableCell width="50px">Price</TableCell>
               <TableCell width="50px">Product id</TableCell>

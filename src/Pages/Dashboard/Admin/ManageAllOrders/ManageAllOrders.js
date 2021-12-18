@@ -8,7 +8,7 @@ const ManageAllOrders = () => {
     fetch(`http://localhost:5000/allOrders`)
       .then((res) => res.json())
       .then((data) => setOrders(data));
-  }, []);
+  }, [orders]);
 
   const handleDeleteOrder = (id) => {
     Swal.fire({
@@ -24,6 +24,10 @@ const ManageAllOrders = () => {
       if (result.isConfirmed) {
         fetch(`http://localhost:5000/order/${id}`, {
           method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("idToken")}`,
+            "content-type": "application/json",
+          },
         })
           .then((res) => res.json())
           .then((data) => {
@@ -33,10 +37,6 @@ const ManageAllOrders = () => {
                 position: "center",
                 icon: "success",
                 title: " Order remove successful",
-              }).then((result) => {
-                if (result.isConfirmed) {
-                  window.location.reload();
-                }
               });
             }
           });
@@ -45,42 +45,72 @@ const ManageAllOrders = () => {
   };
   return (
     <Container>
-      {orders.map((order) => (
-        <Paper sx={{ my: 3, p: 2 }}>
-          <Box sx={{ display: "flex", justifyContent: "space-between", mb: 5 }}>
-            <Typography>
-              Order <span style={{ color: "orange" }}># {order._id}</span>
-            </Typography>
-            <Button
-              variant="outlined"
-              onClick={() => handleDeleteOrder(order._id)}
-            >
-              Remove Order
-            </Button>
-          </Box>
-          {order.order.map((od) => (
+      <Typography
+        variant="h4"
+        sx={{
+          fontWeight: "bold",
+          color: "#FF1493",
+          display: "flex",
+          justifyContent: "center",
+          py: 5,
+        }}
+      >
+        Manage All Order
+      </Typography>
+      {orders.length === 0 && (
+        <Typography
+          variant="h6"
+          sx={{
+            fontWeight: "bold",
+            // color: "#FF1493",
+            display: "flex",
+            justifyContent: "center",
+            p2: 5,
+          }}
+        >
+          Available Order : {orders.length}
+        </Typography>
+      )}
+      <Box>
+        {orders.map((order) => (
+          <Paper sx={{ my: 3, p: 2 }}>
             <Box
-              sx={{ display: "flex", justifyContent: "space-around", my: 2 }}
+              sx={{ display: "flex", justifyContent: "space-between", mb: 5 }}
             >
-              <img width="100px" src={od.img} alt="" />
-              <Typography>{od.name}</Typography>
-              <Typography>Qty: {od.quantity}</Typography>
-              <Typography sx={{}}>
-                <span
-                  style={{
-                    background: "#EFF0F5",
-                    padding: "5px 8px",
-                    borderRadius: "50px",
-                  }}
-                >
-                  {order.status}
-                </span>
+              <Typography>
+                Order <span style={{ color: "orange" }}># {order._id}</span>
               </Typography>
-              <Typography>{order.payment && "Paid"}</Typography>
+              <Button
+                variant="outlined"
+                onClick={() => handleDeleteOrder(order._id)}
+              >
+                Remove Order
+              </Button>
             </Box>
-          ))}
-        </Paper>
-      ))}
+            {order.order.map((od) => (
+              <Box
+                sx={{ display: "flex", justifyContent: "space-around", my: 2 }}
+              >
+                <img width="100px" src={od.img} alt="" />
+                <Typography>{od.name}</Typography>
+                <Typography>Qty: {od.quantity}</Typography>
+                <Typography sx={{}}>
+                  <span
+                    style={{
+                      background: "#EFF0F5",
+                      padding: "5px 8px",
+                      borderRadius: "50px",
+                    }}
+                  >
+                    {order.status}
+                  </span>
+                </Typography>
+                <Typography>{order.payment && "Paid"}</Typography>
+              </Box>
+            ))}
+          </Paper>
+        ))}
+      </Box>
     </Container>
   );
 };
