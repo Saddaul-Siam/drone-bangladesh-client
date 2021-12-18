@@ -1,5 +1,4 @@
 import React from "react";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -13,7 +12,7 @@ import "./Banner.css";
 
 // import Swiper core and required modules
 import SwiperCore, { Pagination, Autoplay } from "swiper";
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -23,6 +22,7 @@ AOS.init();
 SwiperCore.use([Pagination, Autoplay]);
 
 const Banner = () => {
+  const theme = useTheme();
   const pagination = {
     clickable: true,
     renderBullet: function (index, className) {
@@ -40,17 +40,43 @@ const Banner = () => {
       backgroundPosition: "center",
       backgroundSize: "cover",
     },
+    bannerTitle: {
+      [theme.breakpoints.down("md")]: {
+        fontSize: "48px !important",
+        fontFamily: "Playfair Display !important",
+        fontWeight: "700px !important",
+        color: "#06264b !important",
+        lineHeight: "70px !important",
+      },
+      [theme.breakpoints.up("md")]: {
+        fontFamily: "Playfair Display !important",
+        fontSize: "125px !important",
+        fontWeight: "700px !important",
+        color: "#06264b !important",
+        lineHeight: "125px !important",
+      },
+    },
+    bannerText: {
+      fontSize: "16px !important",
+    },
+    bannerContainer: {
+      [theme.breakpoints.down("md")]: {
+        padding: "0px 20px !important",
+      },
+    },
   });
-  const { background } = useStyle();
+
+  const { background, bannerTitle, bannerText, bannerContainer } = useStyle();
+
   return (
     <Box sx={{ height: "100hv", pt: 10 }} id="back-to-top">
       <Swiper
         pagination={pagination}
         className="mySwiper"
-        autoplay={{
-          delay: 5000,
-          disableOnInteraction: false,
-        }}
+        // autoplay={{
+        //   delay: 5000,
+        //   disableOnInteraction: false,
+        // }}
         grabCursor={true}
       >
         <SwiperSlide>
@@ -65,7 +91,7 @@ const Banner = () => {
                 data-aos-offset="800"
                 data-aos-duration="800"
               >
-                <Box sx={{ pl: 15 }}>
+                <Box sx={{ pl: 15 }} className={bannerContainer}>
                   <Typography
                     sx={{
                       fontFamily: "Poppins, sans-serif",
@@ -76,18 +102,11 @@ const Banner = () => {
                       lineHeight: "25px",
                       marginBottom: "10px",
                     }}
+                    className={bannerText}
                   >
                     #A Drone is a Portable
                   </Typography>
-                  <Typography
-                    sx={{
-                      fontFamily: "Playfair Display",
-                      fontSize: "125px",
-                      fontWeight: 700,
-                      color: "#06264b",
-                      lineHeight: "125px",
-                    }}
-                  >
+                  <Typography className={bannerTitle}>
                     Minimal <br /> Drone
                   </Typography>
                   <Typography
@@ -100,6 +119,7 @@ const Banner = () => {
                       lineHeight: "30px",
                       marginTop: "20px",
                     }}
+                    className={bannerText}
                   >
                     Experience the decibels like your ears deserve to. Safe for{" "}
                     <br /> the ears, very for the heart. A treat to your ears.
@@ -107,9 +127,9 @@ const Banner = () => {
                   <Button
                     color="info"
                     variant="contained"
-                    sx={{ mt: 5, borderRadius: "50px", px: 5, py: 2 }}
+                    sx={{ mt: 5, borderRadius: "50px", px: 2, py: 1 }}
                   >
-                    Explore More <ShoppingCartIcon sx={{ pl: 3 }} />
+                    Explore More
                   </Button>
                 </Box>
               </Grid>
@@ -121,7 +141,7 @@ const Banner = () => {
                 data-aos-offset="800"
                 data-aos-duration="800"
               >
-                <Box sx={{ pr: 15 }}>
+                <Box sx={{ pr: 15 }} className={bannerContainer}>
                   <img
                     style={{ width: "100%" }}
                     src="https://cdn.shopify.com/s/files/1/0111/9135/3402/files/fffiinnna.png?v=1619250080"
@@ -144,7 +164,7 @@ const Banner = () => {
                 data-aos-offset="800"
                 data-aos-duration="800"
               >
-                <Box sx={{ pl: 15 }}>
+                <Box sx={{ pl: 15 }} className={bannerContainer}>
                   <Typography
                     sx={{
                       fontFamily: "Poppins, sans-serif",
@@ -155,18 +175,11 @@ const Banner = () => {
                       lineHeight: "25px",
                       marginBottom: "10px",
                     }}
+                    className={bannerText}
                   >
                     #Most Functional
                   </Typography>
-                  <Typography
-                    sx={{
-                      fontFamily: "Playfair Display",
-                      fontSize: "125px",
-                      fontWeight: 700,
-                      color: "#06264b",
-                      lineHeight: "125px",
-                    }}
-                  >
+                  <Typography className={bannerTitle}>
                     Minimalist <br /> Store
                   </Typography>
                   <Typography
@@ -179,6 +192,7 @@ const Banner = () => {
                       lineHeight: "30px",
                       marginTop: "20px",
                     }}
+                    className={bannerText}
                   >
                     Experience the decibels like your ears deserve to. Safe for
                     <br /> the ears, very for the heart. A treat to your ears.
@@ -186,9 +200,9 @@ const Banner = () => {
                   <Button
                     color="info"
                     variant="contained"
-                    sx={{ mt: 5, borderRadius: "50px", px: 5, py: 2 }}
+                    sx={{ mt: 5, borderRadius: "50px", px: 2, py: 1 }}
                   >
-                    Explore More <ShoppingCartIcon sx={{ pl: 3 }} />
+                    Explore More
                   </Button>
                 </Box>
               </Grid>
@@ -200,7 +214,7 @@ const Banner = () => {
                 data-aos-offset="800"
                 data-aos-duration="800"
               >
-                <Box sx={{ pr: 15 }}>
+                <Box sx={{ pr: 15 }} className={bannerContainer}>
                   <img
                     style={{ width: "100%" }}
                     src="https://cdn.shopify.com/s/files/1/0111/9135/3402/files/drone_slider_2.png?v=1620290467"
@@ -220,7 +234,7 @@ const Banner = () => {
                 md={6}
                 sx={{ display: "flex", alignItems: "center" }}
               >
-                <Box sx={{ pl: 15 }}>
+                <Box sx={{ pl: 15 }} className={bannerContainer}>
                   <Typography
                     sx={{
                       fontFamily: "Poppins, sans-serif",
@@ -231,18 +245,11 @@ const Banner = () => {
                       lineHeight: "25px",
                       marginBottom: "10px",
                     }}
+                    className={bannerText}
                   >
                     #Flying With Smart Control
                   </Typography>
-                  <Typography
-                    sx={{
-                      fontFamily: "Playfair Display",
-                      fontSize: "125px",
-                      fontWeight: 700,
-                      color: "#06264b",
-                      lineHeight: "125px",
-                    }}
-                  >
+                  <Typography className={bannerTitle}>
                     Minimal <br /> Flying
                   </Typography>
                   <Typography
@@ -255,6 +262,7 @@ const Banner = () => {
                       lineHeight: "30px",
                       marginTop: "20px",
                     }}
+                    className={bannerText}
                   >
                     Experience the decibels like your ears deserve to. Safe for{" "}
                     <br /> the ears, very for the heart. A treat to your ears.
@@ -262,14 +270,14 @@ const Banner = () => {
                   <Button
                     color="info"
                     variant="contained"
-                    sx={{ mt: 5, borderRadius: "50px", px: 5, py: 2 }}
+                    sx={{ mt: 5, borderRadius: "50px", px: 2, py: 1 }}
                   >
-                    Explore More <ShoppingCartIcon sx={{ pl: 3 }} />
+                    Explore More
                   </Button>
                 </Box>
               </Grid>
               <Grid item xs={6} md={6}>
-                <Box sx={{ pr: 15 }}>
+                <Box sx={{ pr: 15 }} className={bannerContainer}>
                   <img
                     style={{ width: "100%" }}
                     src="https://cdn.shopify.com/s/files/1/0111/9135/3402/files/drone_slider_1.png?v=1620286294"
