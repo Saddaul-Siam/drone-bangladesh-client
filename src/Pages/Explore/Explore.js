@@ -49,7 +49,7 @@ const Explore = (props) => {
                   color: "#fc6539",
                 }}
               >
-                {price}
+               $ {price}
               </Typography>
             </Box>
             <Box>

@@ -20,7 +20,7 @@ const Product = (props) => {
     },
   });
   const { cardHover } = useStyle();
-  
+
   return (
     <Box>
       <Card
@@ -48,7 +48,7 @@ const Product = (props) => {
                   color: "#fc6539",
                 }}
               >
-                {price}
+                $ {price}
               </Typography>
             </Box>
             <Box>

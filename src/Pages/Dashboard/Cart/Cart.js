@@ -84,7 +84,7 @@ export default function Cart() {
   const handleRemoveCart = (id) => {
     Swal.fire({
       title: "Are you sure?",
-      text: "Clear The Cart",
+      text: "Remove The Cart",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -151,9 +151,9 @@ export default function Cart() {
                     <img height="120px" width="100px" src={cart.img} alt="" />
                   </td>
                   <td style={{ width: 400 }}>{cart.name}</td>
-                  <td style={{ width: 199 }}>{cart.price}</td>
+                  <td style={{ width: 199 }}>$ {cart.price}</td>
                   <td style={{ width: 400 }}>{cart.quantity}</td>
-                  <td style={{ width: 199 }}>{cart.total}</td>
+                  <td style={{ width: 199 }}>$ {cart.total}</td>
                   <td style={{ width: 199 }}>
                     <Button
                       variant="text"
