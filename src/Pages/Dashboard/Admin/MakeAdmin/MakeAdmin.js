@@ -37,6 +37,9 @@ const MakeAdmin = () => {
             } else if (!data.modifiedCount) {
               Swal.fire("Error!!!", "This user not found", "error");
             }
+          })
+          .finally(() => {
+            window.location.reload();
           });
       }
     });
