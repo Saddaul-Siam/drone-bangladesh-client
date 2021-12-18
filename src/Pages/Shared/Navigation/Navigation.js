@@ -200,7 +200,7 @@ const Navigation = (props) => {
         <MenuItem>
           <Link style={{ textDecoration: "none", color: "black" }} to="/login">
             <Button color="inherit">Login</Button>
-          </Link>{" "}
+          </Link>
         </MenuItem>
       )}
       <MenuItem onClick={handleProfileMenuOpen}>
@@ -263,12 +263,14 @@ const Navigation = (props) => {
                 {user.email ? (
                   ""
                 ) : (
-                  <Link
-                    style={{ textDecoration: "none", color: "white" }}
-                    to="/login"
-                  >
-                    <Button color="inherit">Login</Button>
-                  </Link>
+                  <Button color="primary">
+                    <Link
+                      style={{ textDecoration: "none", color: "white" }}
+                      to="/login"
+                    >
+                      Login
+                    </Link>
+                  </Button>
                 )}
                 <Link
                   style={{ textDecoration: "none", color: "white" }}

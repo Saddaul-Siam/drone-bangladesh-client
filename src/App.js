@@ -15,6 +15,7 @@ import MyOrder from "./Pages/Dashboard/MyOrder/MyOrder";
 import Home from "./Pages/Home/Home/Home";
 import Login from "./Pages/Home/Login/Login/Login";
 import Register from "./Pages/Home/Login/Register/Register";
+import AdminRoute from "./Pages/PrivateRoute/AdminRoute";
 import PrivateRoute from "./Pages/PrivateRoute/PrivateRoute";
 
 function App() {
@@ -36,10 +37,10 @@ function App() {
             <Route path="/dashboard/myOrder" element={<PrivateRoute>< MyOrder /></PrivateRoute>} />
             <Route path="/dashboard/addReview" element={<PrivateRoute>< AddReview /></PrivateRoute>} />
 
-            <Route path="/dashboard/makeAdmin" element={<PrivateRoute>< MakeAdmin /></PrivateRoute>} />
-            <Route path="/dashboard/addProducts" element={<PrivateRoute>< AddProducts /></PrivateRoute>} />
-            <Route path="/dashboard/manageAllOrders" element={<PrivateRoute>< ManageAllOrders /></PrivateRoute>} />
-            <Route path="/dashboard/manageAllProducts" element={<PrivateRoute>< ManageAllProducts /></PrivateRoute>} />
+            <Route path="/dashboard/makeAdmin" element={<AdminRoute>< MakeAdmin /></AdminRoute>} />
+            <Route path="/dashboard/addProducts" element={<AdminRoute>< AddProducts /></AdminRoute>} />
+            <Route path="/dashboard/manageAllOrders" element={<AdminRoute>< ManageAllOrders /></AdminRoute>} />
+            <Route path="/dashboard/manageAllProducts" element={<AdminRoute>< ManageAllProducts /></AdminRoute>} />
           </Route>
           
         </Routes>

@@ -95,7 +95,7 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export default function Dashboard() {
-  const { logOut } = useAuth();
+  const { logOut, admin } = useAuth();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -140,113 +140,121 @@ export default function Dashboard() {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List>
-          <Link to="/" style={{ textDecoration: "none", color: "black" }}>
-            <ListItem button>
+        {admin ? (
+          ""
+        ) : (
+          <List>
+            <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+              <ListItem button>
+                <ListItemIcon>
+                  <HomeIcon />
+                </ListItemIcon>
+                <ListItemText>Home</ListItemText>
+              </ListItem>
+            </Link>
+            <Link
+              to="/dashboard/cart"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <ListItem button>
+                <ListItemIcon>
+                  <LocalMallIcon />
+                </ListItemIcon>
+                <ListItemText>Cart</ListItemText>
+              </ListItem>
+            </Link>
+            <Link
+              to="/dashboard/myOrder"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <ListItem button>
+                <ListItemIcon>
+                  <ShoppingCartIcon />
+                </ListItemIcon>
+                <ListItemText>My Order</ListItemText>
+              </ListItem>
+            </Link>
+            <Link
+              to="/dashboard/addReview"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <ListItem button>
+                <ListItemIcon>
+                  <RateReviewIcon />
+                </ListItemIcon>
+                <ListItemText>Add Review</ListItemText>
+              </ListItem>
+            </Link>
+            <ListItem button onClick={logOut}>
               <ListItemIcon>
-                <HomeIcon />
+                <LogoutIcon />
               </ListItemIcon>
-              <ListItemText>Home</ListItemText>
+              <ListItemText>Log Out</ListItemText>
             </ListItem>
-          </Link>
-          <Link
-            to="/dashboard/cart"
-            style={{ textDecoration: "none", color: "black" }}
-          >
-            <ListItem button>
+          </List>
+        )}
+        {admin && (
+          <List>
+            <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+              <ListItem button>
+                <ListItemIcon>
+                  <HomeIcon />
+                </ListItemIcon>
+                <ListItemText>Home</ListItemText>
+              </ListItem>
+            </Link>
+            <Link
+              to="/dashboard/AddProducts"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <ListItem button>
+                <ListItemIcon>
+                  <AddTaskIcon />
+                </ListItemIcon>
+                <ListItemText>Add Product</ListItemText>
+              </ListItem>
+            </Link>
+            <Link
+              to="/dashboard/makeAdmin"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <ListItem button>
+                <ListItemIcon>
+                  <AdminPanelSettingsIcon />
+                </ListItemIcon>
+                <ListItemText>Make Admin</ListItemText>
+              </ListItem>
+            </Link>
+            <Link
+              to="/dashboard/manageAllOrders"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <ListItem button>
+                <ListItemIcon>
+                  <ManageAccountsIcon />
+                </ListItemIcon>
+                <ListItemText>Manage All Order</ListItemText>
+              </ListItem>
+            </Link>
+            <Link
+              to="/dashboard/manageAllProducts"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <ListItem button>
+                <ListItemIcon>
+                  <ManageSearchIcon />
+                </ListItemIcon>
+                <ListItemText>Manage Products</ListItemText>
+              </ListItem>
+            </Link>
+            <ListItem button onClick={logOut}>
               <ListItemIcon>
-                <LocalMallIcon />
+                <LogoutIcon />
               </ListItemIcon>
-              <ListItemText>Cart</ListItemText>
+              <ListItemText>Log Out</ListItemText>
             </ListItem>
-          </Link>
-          <Link
-            to="/dashboard/myOrder"
-            style={{ textDecoration: "none", color: "black" }}
-          >
-            <ListItem button>
-              <ListItemIcon>
-                <ShoppingCartIcon />
-              </ListItemIcon>
-              <ListItemText>My Order</ListItemText>
-            </ListItem>
-          </Link>
-          <Link
-            to="/dashboard/addReview"
-            style={{ textDecoration: "none", color: "black" }}
-          >
-            <ListItem button>
-              <ListItemIcon>
-                <RateReviewIcon />
-              </ListItemIcon>
-              <ListItemText>Add Review</ListItemText>
-            </ListItem>
-          </Link>
-          <ListItem button onClick={logOut}>
-            <ListItemIcon>
-              <LogoutIcon />
-            </ListItemIcon>
-            <ListItemText>Log Out</ListItemText>
-          </ListItem>
-          <Link to="/" style={{ textDecoration: "none", color: "black" }}>
-            <ListItem button>
-              <ListItemIcon>
-                <HomeIcon />
-              </ListItemIcon>
-              <ListItemText>Home</ListItemText>
-            </ListItem>
-          </Link>
-          <Link
-            to="/dashboard/AddProducts"
-            style={{ textDecoration: "none", color: "black" }}
-          >
-            <ListItem button>
-              <ListItemIcon>
-                <AddTaskIcon />
-              </ListItemIcon>
-              <ListItemText>Add Product</ListItemText>
-            </ListItem>
-          </Link>
-          <Link
-            to="/dashboard/makeAdmin"
-            style={{ textDecoration: "none", color: "black" }}
-          >
-            <ListItem button>
-              <ListItemIcon>
-                <AdminPanelSettingsIcon />
-              </ListItemIcon>
-              <ListItemText>Make Admin</ListItemText>
-            </ListItem>
-          </Link>
-          <Link
-            to="/dashboard/manageAllOrders"
-            style={{ textDecoration: "none", color: "black" }}
-          >
-            <ListItem button>
-              <ListItemIcon>
-                <ManageAccountsIcon />
-              </ListItemIcon>
-              <ListItemText>Manage All Order</ListItemText>
-            </ListItem>
-          </Link>
-          <Link
-            to="/dashboard/manageAllProducts"
-            style={{ textDecoration: "none", color: "black" }}
-          >
-            <ListItem button>
-              <ListItemIcon>
-                <ManageSearchIcon />
-              </ListItemIcon>
-              <ListItemText>Manage Products</ListItemText>
-            </ListItem>
-          </Link>
-          <ListItem button onClick={logOut}>
-            <ListItemIcon>
-              <LogoutIcon />
-            </ListItemIcon>
-            <ListItemText>Log Out</ListItemText>
-          </ListItem>
-        </List>
+          </List>
+        )}
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />

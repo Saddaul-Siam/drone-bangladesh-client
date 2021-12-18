@@ -22,7 +22,7 @@ const MakeAdmin = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         const user = { email };
-        fetch('https://bike-buzz.herokuapp.com/users/admin', {
+        fetch('http://localhost:5000/users/admin', {
           method: 'PUT',
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('idToken')}`,
