@@ -5,7 +5,7 @@ const ManageAllOrders = () => {
   const Swal = require("sweetalert2");
   const [orders, setOrders] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/allOrders`)
+    fetch(`https://glacial-earth-17759.herokuapp.com/allOrders`)
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, [orders]);
@@ -22,7 +22,7 @@ const ManageAllOrders = () => {
       cancelButtonText: "No",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/order/${id}`, {
+        fetch(`https://glacial-earth-17759.herokuapp.com/order/${id}`, {
           method: "DELETE",
           headers: {
             Authorization: `Bearer ${localStorage.getItem("idToken")}`,

@@ -15,7 +15,7 @@ const Payment = () => {
   const { id } = useParams();
   const [orders, setOrders] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:5000/order/${id}`)
+    fetch(`https://glacial-earth-17759.herokuapp.com/order/${id}`)
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, [id]);

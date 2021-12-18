@@ -13,7 +13,7 @@ const AddProducts = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    fetch(`http://localhost:5000/addProducts`, {
+    fetch(`https://glacial-earth-17759.herokuapp.com/addProducts`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("idToken")}`,

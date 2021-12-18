@@ -9,7 +9,7 @@ const CartDetails = () => {
   const [orders, setOrders] = useState({});
   const { order } = orders;
   useEffect(() => {
-    fetch(`http://localhost:5000/order/${id}`)
+    fetch(`https://glacial-earth-17759.herokuapp.com/order/${id}`)
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, [id]);

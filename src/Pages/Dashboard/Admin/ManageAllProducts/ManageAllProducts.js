@@ -11,7 +11,7 @@ import ManageAllProduct from "./ManageAllProduct";
 const ManageAllProducts = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/products`)
+    fetch(`https://glacial-earth-17759.herokuapp.com/products`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, [products]);
@@ -36,9 +36,9 @@ const ManageAllProducts = () => {
             <TableRow>
               <TableCell>Image</TableCell>
               <TableCell>Name</TableCell>
-              <TableCell width="50px">Price</TableCell>
-              <TableCell width="50px">Product id</TableCell>
-              <TableCell width="50px">Action</TableCell>
+              <TableCell>Price</TableCell>
+              <TableCell>Product id</TableCell>
+              <TableCell>Action</TableCell>
             </TableRow>
           </TableHead>
           {products.map((product) => (

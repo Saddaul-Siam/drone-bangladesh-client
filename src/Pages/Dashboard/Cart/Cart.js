@@ -33,7 +33,7 @@ export default function Cart() {
   const [carts, setCarts] = useState([]);
   const { user } = useAuth();
   useEffect(() => {
-    fetch("http://localhost:5000/products")
+    fetch("https://glacial-earth-17759.herokuapp.com/products")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
@@ -77,7 +77,7 @@ export default function Cart() {
     order.email = user.email;
     order.order = carts;
     order.status = "pending";
-    fetch("http://localhost:5000/order", {
+    fetch("https://glacial-earth-17759.herokuapp.com/order", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(order),
@@ -143,7 +143,10 @@ export default function Cart() {
         <Box sx={{ pt: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={8}>
-              <Link to="/explore" style={{ textDecoration: "none", color: "black" }}>
+              <Link
+                to="/explore"
+                style={{ textDecoration: "none", color: "black" }}
+              >
                 <Button variant="contained">CONTINUE SHOPPING </Button>
               </Link>
             </Grid>

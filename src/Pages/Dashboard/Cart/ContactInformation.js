@@ -25,7 +25,7 @@ const ContactInformation = () => {
     }
   }
   useEffect(() => {
-    fetch(`http://localhost:5000/order/${id}`)
+    fetch(`https://glacial-earth-17759.herokuapp.com/order/${id}`)
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, [id]);
@@ -34,7 +34,7 @@ const ContactInformation = () => {
   const onSubmit = (data) => {
     data.totalShoppingCost = totalShoppingCost;
     data._id = orders._id;
-    fetch("http://localhost:5000/order", {
+    fetch("https://glacial-earth-17759.herokuapp.com/order", {
       method: "PUT",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),

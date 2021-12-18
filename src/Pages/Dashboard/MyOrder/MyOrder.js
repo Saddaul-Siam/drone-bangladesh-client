@@ -7,7 +7,7 @@ const MyOrder = () => {
   const { user } = useAuth();
   const [orders, setOrders] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/orders/${user.email}`)
+    fetch(`https://glacial-earth-17759.herokuapp.com/orders/${user.email}`)
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, [orders, user.email]);
@@ -24,7 +24,7 @@ const MyOrder = () => {
       cancelButtonText: "No",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/order/${id}`, {
+        fetch(`https://glacial-earth-17759.herokuapp.com/order/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

@@ -27,7 +27,9 @@ const AddToCartModal = (props) => {
   const [product, setProduct] = useState({});
   // console.log(product);
   useEffect(() => {
-    fetch(`http://localhost:5000/product/${props?.productId}`)
+    fetch(
+      `https://glacial-earth-17759.herokuapp.com/product/${props?.productId}`
+    )
       .then((res) => res.json())
       .then((data) => setProduct(data));
   }, [props?.productId]);
@@ -36,7 +38,7 @@ const AddToCartModal = (props) => {
     // product.email = `${user.email}`;
     // product.status = "pending";
     // product.quantity = 1;
-    // fetch(`http://localhost:5000/addToCart`, {
+    // fetch(`https://glacial-earth-17759.herokuapp.com/addToCart`, {
     //   method: "POST",
     //   headers: { "Content-Type": "application/json" },
     //   body: JSON.stringify(product),

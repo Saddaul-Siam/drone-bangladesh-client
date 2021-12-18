@@ -22,7 +22,7 @@ const MakeAdmin = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         const user = { email };
-        fetch("http://localhost:5000/users/admin", {
+        fetch("https://glacial-earth-17759.herokuapp.com/users/admin", {
           method: "PUT",
           headers: {
             Authorization: `Bearer ${localStorage.getItem("idToken")}`,
