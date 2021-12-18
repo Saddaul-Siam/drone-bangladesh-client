@@ -4,11 +4,13 @@ import {
   CardMedia,
   Container,
   Typography,
+  useTheme,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import "react-multi-carousel/lib/styles.css";
 import Carousel from "react-multi-carousel";
+import { makeStyles } from "@mui/styles";
 
 const LatestBlog = ({ deviceType }) => {
   const responsive = {
@@ -28,6 +30,20 @@ const LatestBlog = ({ deviceType }) => {
       paritialVisibilityGutter: 30,
     },
   };
+  const theme = useTheme();
+  const useStyle = makeStyles({
+    title: {
+      [theme.breakpoints.down("md")]: {
+        fontSize: "35px !important",
+        fontFamily: "Playfair Display !important",
+        fontWeight: "700px !important",
+        color: "#06264b !important",
+        lineHeight: "70px !important",
+      },
+    },
+  });
+
+  const { title } = useStyle();
   return (
     <Container sx={{ py: 10 }}>
       <Box
@@ -46,6 +62,7 @@ const LatestBlog = ({ deviceType }) => {
             fontWeight: 700,
             fontFamily: "Playfair Display, serif",
           }}
+          className={title}
         >
           Latest Featured Blog
         </Typography>

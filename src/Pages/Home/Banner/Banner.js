@@ -73,10 +73,10 @@ const Banner = () => {
       <Swiper
         pagination={pagination}
         className="mySwiper"
-        // autoplay={{
-        //   delay: 5000,
-        //   disableOnInteraction: false,
-        // }}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
         grabCursor={true}
       >
         <SwiperSlide>
@@ -87,9 +87,6 @@ const Banner = () => {
                 xs={6}
                 md={6}
                 sx={{ display: "flex", alignItems: "center" }}
-                data-aos="fade-right"
-                data-aos-offset="800"
-                data-aos-duration="800"
               >
                 <Box sx={{ pl: 15 }} className={bannerContainer}>
                   <Typography
@@ -133,14 +130,7 @@ const Banner = () => {
                   </Button>
                 </Box>
               </Grid>
-              <Grid
-                item
-                xs={6}
-                md={6}
-                data-aos="fade-left"
-                data-aos-offset="800"
-                data-aos-duration="800"
-              >
+              <Grid item xs={6} md={6}>
                 <Box sx={{ pr: 15 }} className={bannerContainer}>
                   <img
                     style={{ width: "100%" }}
@@ -160,9 +150,6 @@ const Banner = () => {
                 xs={6}
                 md={6}
                 sx={{ display: "flex", alignItems: "center" }}
-                data-aos="fade-right"
-                data-aos-offset="800"
-                data-aos-duration="800"
               >
                 <Box sx={{ pl: 15 }} className={bannerContainer}>
                   <Typography
@@ -206,14 +193,7 @@ const Banner = () => {
                   </Button>
                 </Box>
               </Grid>
-              <Grid
-                item
-                xs={6}
-                md={6}
-                data-aos="fade-left"
-                data-aos-offset="800"
-                data-aos-duration="800"
-              >
+              <Grid item xs={6} md={6}>
                 <Box sx={{ pr: 15 }} className={bannerContainer}>
                   <img
                     style={{ width: "100%" }}

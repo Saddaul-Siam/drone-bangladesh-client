@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Container, Typography, Box } from "@mui/material";
+import { Container, Typography, Box, useTheme } from "@mui/material";
 import Carousel from "react-multi-carousel";
 import AddToCartModal from "../ShoppingCart/AddToCartModal/AddToCartModal";
 import Product from "./Product";
+import { makeStyles } from "@mui/styles";
 
 const Products = ({ handleOpen, handleClose, open }) => {
   const [products, setProducts] = useState([]);
@@ -33,6 +34,20 @@ const Products = ({ handleOpen, handleClose, open }) => {
     handleOpen();
     setProductId(id);
   };
+  const theme = useTheme();
+  const useStyle = makeStyles({
+    title: {
+      [theme.breakpoints.down("md")]: {
+        fontSize: "35px !important",
+        fontFamily: "Playfair Display !important",
+        fontWeight: "700px !important",
+        color: "#06264b !important",
+        lineHeight: "70px !important",
+      },
+    },
+  });
+
+  const { title } = useStyle();
   return (
     <Container>
       <Box
@@ -45,6 +60,7 @@ const Products = ({ handleOpen, handleClose, open }) => {
         </Typography>
         <Typography
           sx={{ fontSize: "45px", fontWeight: 700, color: "#06264b" }}
+          className={title}
         >
           Featured Products
         </Typography>

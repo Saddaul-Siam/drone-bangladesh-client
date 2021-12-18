@@ -1,7 +1,22 @@
 import React from "react";
-import { Box, Button, Container, Grid, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, Typography, useTheme } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { makeStyles } from "@mui/styles";
 const FeaturedProduct = () => {
+  const theme = useTheme();
+  const useStyle = makeStyles({
+    title: {
+      [theme.breakpoints.down("md")]: {
+        fontSize: "35px !important",
+        fontFamily: "Playfair Display !important",
+        fontWeight: "700px !important",
+        color: "#06264b !important",
+        lineHeight: "70px !important",
+      },
+    },
+  });
+
+  const { title } = useStyle();
   return (
     <Container>
       <Grid container spacing={5}>
@@ -33,8 +48,9 @@ const FeaturedProduct = () => {
                 fontFamily: "Playfair Display, serif",
                 py: 3,
               }}
+              className={title}
             >
-              Minimal drone for <br /> music video lover
+              Minimal drone for music video lover
             </Typography>
             <Typography
               sx={{

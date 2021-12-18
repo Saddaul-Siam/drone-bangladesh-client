@@ -1,6 +1,21 @@
 import React from "react";
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Box, Container, Grid, Typography, useTheme } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 const SmartFeature = () => {
+  const theme = useTheme();
+  const useStyle = makeStyles({
+    title: {
+      [theme.breakpoints.down("md")]: {
+        fontSize: "35px !important",
+        fontFamily: "Playfair Display !important",
+        fontWeight: "700px !important",
+        color: "#06264b !important",
+        lineHeight: "70px !important",
+      },
+    },
+  });
+
+  const { title } = useStyle();
   return (
     <Container sx={{ py: 10 }}>
       <Grid container spacing={5}>
@@ -31,6 +46,7 @@ const SmartFeature = () => {
                 fontFamily: "Playfair Display, serif",
                 py: 3,
               }}
+              className={title}
             >
               Smart Feature with help
             </Typography>

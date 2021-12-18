@@ -49,15 +49,15 @@ const Footer = () => {
                 <ListItemText>This website create by saddaul siam</ListItemText>
               </ListItem>
               <ListItem>
-                <LocationOnIcon sx={{ pr: 2 }} />
+                <LocationOnIcon sx={{ pr: 2, fontSize: 40 }} />
                 <ListItemText>Addresss: Pabna Dhaka Bangladesh</ListItemText>
               </ListItem>
               <ListItem>
-                <EmailIcon sx={{ pr: 2 }} />
+                <EmailIcon sx={{ pr: 2, fontSize: 40 }} />
                 <ListItemText>Email: saddaul.siam@gmail.com</ListItemText>
               </ListItem>
               <ListItem>
-                <PhoneIcon sx={{ pr: 2 }} />
+                <PhoneIcon sx={{ pr: 2, fontSize: 40 }} />
                 <ListItemText>Phone: +8801311333277</ListItemText>
               </ListItem>
             </List>
@@ -154,23 +154,23 @@ const Footer = () => {
                 </Typography>
               </ListItem>
               <ListItem className={listItem}>
-                <FacebookIcon sx={{ pr: 2 }} />
+                <FacebookIcon sx={{ pr: 2, fontSize: 40 }} />
                 <ListItemText>Facebook</ListItemText>
               </ListItem>
               <ListItem className={listItem}>
-                <YouTubeIcon sx={{ pr: 2 }} />
+                <YouTubeIcon sx={{ pr: 2, fontSize: 40 }} />
                 <ListItemText>YouTube</ListItemText>
               </ListItem>
               <ListItem className={listItem}>
-                <InstagramIcon sx={{ pr: 2 }} />
+                <InstagramIcon sx={{ pr: 2, fontSize: 40 }} />
                 <ListItemText>Instagram</ListItemText>
               </ListItem>
               <ListItem className={listItem}>
-                <TwitterIcon sx={{ pr: 2 }} />
+                <TwitterIcon sx={{ pr: 2, fontSize: 40 }} />
                 <ListItemText>Twitter</ListItemText>
               </ListItem>
               <ListItem className={listItem}>
-                <LinkedInIcon sx={{ pr: 2 }} />
+                <LinkedInIcon sx={{ pr: 2, fontSize: 40 }} />
                 <ListItemText>LinkedIn</ListItemText>
               </ListItem>
             </List>

@@ -91,7 +91,7 @@ const Navigation = (props) => {
 
   const useStyle = makeStyles({
     navbarColor: {
-      backgroundColor: "#6047EC !important",
+      backgroundColor: "#303030 !important",
       padding: "5px 0",
     },
   });
