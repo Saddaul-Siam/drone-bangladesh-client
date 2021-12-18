@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Typography, Box } from "@mui/material";
-import Carousel from "react-multi-carousel";
+import { Container, Typography, Box, Grid } from "@mui/material";
 import Explore from "./Explore";
 import AddToCartModal from "../Home/ShoppingCart/AddToCartModal/AddToCartModal";
 import Navigation from "../../Pages/Shared/Navigation/Navigation";
@@ -12,23 +11,7 @@ const Explores = ({ handleOpen, handleClose, open }) => {
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
-  const responsive = {
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 4,
-      paritialVisibilityGutter: 60,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-      paritialVisibilityGutter: 50,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-      paritialVisibilityGutter: 30,
-    },
-  };
+
   const [productId, setProductId] = useState("");
   const handleClickAddToCard = (id) => {
     handleOpen();
@@ -57,7 +40,7 @@ const Explores = ({ handleOpen, handleClose, open }) => {
           </Typography>
         </Box>
         <Box sx={{ my: 8 }}>
-          <Carousel ssr responsive={responsive}>
+          <Grid container spacing={2}>
             {products?.map((product) => (
               <Explore
                 product={product}
@@ -66,7 +49,8 @@ const Explores = ({ handleOpen, handleClose, open }) => {
                 handleClickAddToCard={handleClickAddToCard}
               />
             ))}
-          </Carousel>
+          </Grid>
+
           <AddToCartModal
             handleOpen={handleOpen}
             handleClose={handleClose}

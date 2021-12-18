@@ -6,6 +6,7 @@ import {
   Card,
   CardMedia,
   Button,
+  Grid,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
@@ -20,9 +21,9 @@ const Explore = (props) => {
     },
   });
   const { cardHover } = useStyle();
-  
+
   return (
-    <Box>
+    <Grid item xs={12} md={3}>
       <Card
         sx={{ maxWidth: 260, mb: 2 }}
         variant="outlined"
@@ -62,7 +63,7 @@ const Explore = (props) => {
           </Box>
         </CardContent>
       </Card>
-    </Box>
+    </Grid>
   );
 };
 
