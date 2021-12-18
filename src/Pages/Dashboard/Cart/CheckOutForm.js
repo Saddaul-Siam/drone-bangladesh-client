@@ -1,4 +1,4 @@
-import { Alert, CircularProgress } from "@mui/material";
+import { Alert, Button, CircularProgress } from "@mui/material";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
 import { clearTheCart } from "../../../utilities/fakedb";
@@ -125,9 +125,14 @@ const CheckOutForm = ({ orders, id }) => {
         {processing ? (
           <CircularProgress />
         ) : (
-          <button type="submit" disabled={!stripe || success}>
+          <Button
+            sx={{ mt: 2 }}
+            variant="contained"
+            type="submit"
+            disabled={!stripe || success}
+          >
             Pay $ {orders?.totalShoppingCost}
-          </button>
+          </Button>
         )}
       </form>
       {error && <Alert severity="error">{error}</Alert>}

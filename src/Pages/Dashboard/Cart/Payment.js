@@ -52,6 +52,9 @@ const Payment = () => {
                 <CheckOutForm orders={orders} id={id} />
               </Elements>
             )}
+            <Typography variant="h6" sx={{ py: 3 }}>
+              SSL Commerce Coming soon
+            </Typography>
           </Paper>
         </Grid>
         <Grid item xs={12} md={6}>
