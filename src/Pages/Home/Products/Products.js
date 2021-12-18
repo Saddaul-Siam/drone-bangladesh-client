@@ -59,7 +59,12 @@ const Products = ({ handleOpen, handleClose, open }) => {
           AWESOME PRODUCTS
         </Typography>
         <Typography
-          sx={{ fontSize: "45px", fontWeight: 700, color: "#06264b" }}
+          sx={{
+            fontSize: "45px",
+            fontWeight: 700,
+            color: "#06264b",
+            fontFamily: "Playfair Display, serif",
+          }}
           className={title}
         >
           Featured Products

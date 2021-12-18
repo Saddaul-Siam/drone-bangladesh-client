@@ -7,6 +7,7 @@ import FeaturedProduct from "../Featured Product/FeaturedProduct";
 import LatestBlog from "../LatestBlog/LatestBlog";
 import Products from "../Products/Products";
 import ProfessionalDrone from "../ProfessionalDrone/ProfessionalDrone";
+import Reviews from "../Reviews/Reviews";
 import SmartFeature from "../SmartFeature/SmartFeature";
 import Subscribe from "../Subscribe/Subscribe";
 
@@ -21,6 +22,7 @@ const Home = ({ handleOpen, handleClose, open }) => {
       <SmartFeature />
       <Products handleOpen={handleOpen} handleClose={handleClose} open={open} />
       <LatestBlog />
+      <Reviews />
       <Subscribe />
       <Footer />
     </div>

@@ -57,7 +57,9 @@ const Banner = () => {
       },
     },
     bannerText: {
-      fontSize: "16px !important",
+      [theme.breakpoints.down("md")]: {
+        fontSize: "16px !important",
+      },
     },
     bannerContainer: {
       [theme.breakpoints.down("md")]: {

@@ -17,7 +17,7 @@ const AddReview = () => {
   const Swal = require("sweetalert2");
   const onSubmit = (data) => {
     data.img = user.photoURL;
-    fetch("", {
+    fetch("https://glacial-earth-17759.herokuapp.com/addReview", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
