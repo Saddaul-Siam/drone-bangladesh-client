@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import AuthProvider from "./Context/AuthProvider";
 import AddReview from "./Pages/Dashboard/AddReview/AddReview";
@@ -12,6 +13,7 @@ import Payment from "./Pages/Dashboard/Cart/Payment";
 import Dashboard from "./Pages/Dashboard/Dashboard/Dashboard";
 import DashboardHome from "./Pages/Dashboard/DashboardHome/DashboardHome";
 import MyOrder from "./Pages/Dashboard/MyOrder/MyOrder";
+import Explores from "./Pages/Explore/Explores";
 import Home from "./Pages/Home/Home/Home";
 import Login from "./Pages/Home/Login/Login/Login";
 import Register from "./Pages/Home/Login/Register/Register";
@@ -19,17 +21,21 @@ import AdminRoute from "./Pages/PrivateRoute/AdminRoute";
 import PrivateRoute from "./Pages/PrivateRoute/PrivateRoute";
 
 function App() {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   return (
     <div>
       <AuthProvider>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home handleOpen={handleOpen} handleClose={handleClose} open={open}/>} />
+          <Route path="/home" element={<Home handleOpen={handleOpen} handleClose={handleClose} open={open}/>} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/cartDetails" element={<PrivateRoute>< CartDetails /></PrivateRoute>} />
           <Route path="/contactInformation/:id" element={<PrivateRoute>< ContactInformation /></PrivateRoute>} />
           <Route path="/payment/:id" element={<PrivateRoute>< Payment /></PrivateRoute>} />
+          <Route path="/explore" element={<PrivateRoute>< Explores  handleOpen={handleOpen} handleClose={handleClose} open={open}/></PrivateRoute>} />
           
           <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} >
             <Route path="/dashboard" element={<PrivateRoute><DashboardHome /></PrivateRoute>} />

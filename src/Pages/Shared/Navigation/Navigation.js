@@ -19,6 +19,7 @@ import Avatar from "@mui/material/Avatar";
 import PrimaryButton from "../../../StyledComponent/MuiButton";
 import useAuth from "../../../Hooks/useAuth";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
+import { getStoredCart } from "../../../utilities/fakedb";
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -78,12 +79,16 @@ ScrollTop.propTypes = {
 };
 
 const Navigation = (props) => {
-  const [cart, setCart] = useState([]);
+  const saveCart = getStoredCart();
+  const [qut, setQut] = useState();
   useEffect(() => {
-    fetch("http://localhost:5000/myCart")
-      .then((res) => res.json())
-      .then((data) => setCart(data));
-  }, [cart]);
+    let quantity = 0;
+    for (const key in saveCart) {
+      quantity += parseInt(saveCart[key]);
+    }
+    setQut(quantity);
+  }, [saveCart]);
+
   const useStyle = makeStyles({
     navbarColor: {
       backgroundColor: "#6047EC !important",
@@ -278,7 +283,7 @@ const Navigation = (props) => {
                 >
                   <Button color="inherit">
                     <IconButton size="large" color="inherit">
-                      <Badge badgeContent={cart.length} color="error">
+                      <Badge badgeContent={`${qut}`} color="error">
                         <LocalMallIcon />{" "}
                       </Badge>
                     </IconButton>

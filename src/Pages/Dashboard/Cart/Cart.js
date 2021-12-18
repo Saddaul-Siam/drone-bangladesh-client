@@ -143,7 +143,7 @@ export default function Cart() {
         <Box sx={{ pt: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={8}>
-              <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+              <Link to="/explore" style={{ textDecoration: "none", color: "black" }}>
                 <Button variant="contained">CONTINUE SHOPPING </Button>
               </Link>
             </Grid>

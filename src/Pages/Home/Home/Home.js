@@ -10,10 +10,7 @@ import ProfessionalDrone from "../ProfessionalDrone/ProfessionalDrone";
 import SmartFeature from "../SmartFeature/SmartFeature";
 import Subscribe from "../Subscribe/Subscribe";
 
-const Home = () => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+const Home = ({ handleOpen, handleClose, open }) => {
   return (
     <div>
       <Navigation />
