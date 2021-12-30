@@ -177,6 +177,40 @@ const Navigation = (props) => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
+      {user.email && (
+        <MenuItem onClick={handleProfileMenuOpen}>
+          <IconButton
+            size="large"
+            aria-label="account of current user"
+            aria-controls="primary-search-account-menu"
+            aria-haspopup="true"
+            color="inherit"
+          >
+            {user.photoURL ? (
+              <Avatar alt="profile" src={user?.photoURL} />
+            ) : (
+              <AccountCircle />
+            )}
+          </IconButton>
+          <span>Profile</span>
+        </MenuItem>
+      )}
+      {user.email && (
+        <MenuItem>
+          <Link
+            style={{ textDecoration: "none", color: "white" }}
+            to="/dashboard/cart"
+          >
+            <Button color="inherit">
+              <IconButton size="large">
+                <Badge badgeContent={`${qut}`} color="error">
+                  <LocalMallIcon />{" "}
+                </Badge>
+              </IconButton>
+            </Button>
+          </Link>
+        </MenuItem>
+      )}
       <MenuItem>
         <Link style={{ textDecoration: "none", color: "black" }} to="/home">
           <Button color="inherit">Home</Button>
@@ -199,6 +233,7 @@ const Navigation = (props) => {
           </Link>{" "}
         </MenuItem>
       )}
+
       {user.email ? (
         ""
       ) : (
@@ -208,18 +243,6 @@ const Navigation = (props) => {
           </Link>
         </MenuItem>
       )}
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <span>Profile</span>
-      </MenuItem>
     </Menu>
   );
 

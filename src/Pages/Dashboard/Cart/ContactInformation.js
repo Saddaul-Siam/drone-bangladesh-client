@@ -46,6 +46,18 @@ const ContactInformation = () => {
         }
       });
   };
+
+  const handleRemoveOrder = (id) => {
+    fetch(`https://glacial-earth-17759.herokuapp.com/order/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          navigate("/dashboard/cart");
+        }
+      });
+  };
   return (
     <Container>
       <Grid container spacing={2}>
@@ -134,19 +146,31 @@ const ContactInformation = () => {
                 </Grid>
               </Grid>
               <br />
-              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-                <Button sx={{ fontSize: "12px" }} variant="text" size="small">
+              <Box
+                sx={{ display: "flex", justifyContent: "space-between", py: 3 }}
+              >
+                <Button
+                  sx={{ fontSize: "12px" }}
+                  variant="text"
+                  size="small"
+                  onClick={() => handleRemoveOrder(orders._id)}
+                >
                   Return to cart
                 </Button>
                 <Button
                   type="submit"
-                  sx={{ my: 3, py: 1, borderRadius: "50px" }}
+                  sx={{ py: 1, borderRadius: "50px" }}
                   variant="contained"
                 >
                   Continue to shipping
                 </Button>
-                <Button sx={{ fontSize: "12px" }} variant="text" size="small">
-                  Cancle shipping
+                <Button
+                  sx={{ fontSize: "12px" }}
+                  variant="text"
+                  size="small"
+                  onClick={() => handleRemoveOrder(orders._id)}
+                >
+                  Cancel shipping
                 </Button>
               </Box>
             </form>

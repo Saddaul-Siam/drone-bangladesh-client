@@ -5,6 +5,7 @@ import {
   clearTheCart,
   getStoredCart,
   removeFromDb,
+  updateDB,
 } from "../../../utilities/fakedb";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
@@ -117,6 +118,30 @@ export default function Cart() {
         }
       });
   };
+  const handleAddToCart = (id) => {
+    const quantity = document.getElementById("cartNumber");
+    updateDB(id, quantity.value);
+
+    window.location.reload();
+  };
+  const updateProductNumber = (isIncreasing) => {
+    const productInput = document.getElementById("cartNumber");
+    let productNumber = productInput.value;
+    if (isIncreasing === true) {
+      productNumber = parseInt(productNumber) + 1;
+    } else if (productNumber > 0) {
+      productNumber = parseInt(productNumber) - 1;
+    }
+    productInput.value = productNumber;
+  };
+
+  const cartPlus = () => {
+    updateProductNumber(true);
+  };
+
+  const cartMinus = () => {
+    updateProductNumber(false);
+  };
   return (
     <>
       <Container>
@@ -130,18 +155,18 @@ export default function Cart() {
             py: 3,
           }}
         >
-          My Order
+          My Cart
         </Typography>
         <Root>
           <table style={{ minWidth: 500 }} aria-label="custom pagination table">
             <thead>
               <tr>
-                <th>Image</th>
-                <th style={{ width: 400 }}>Product</th>
-                <th style={{ width: 199 }}>Price</th>
-                <th style={{ width: 400 }}>Quantity</th>
-                <th style={{ width: 199 }}>Total</th>
-                <th style={{ width: 199 }}>Remove</th>
+                <th style={{ textAlign: "center" }}>Image</th>
+                <th style={{ width: 400, textAlign: "center" }}>Product</th>
+                <th style={{ width: 199, textAlign: "center" }}>Price</th>
+                <th style={{ width: 400, textAlign: "center" }}>Quantity</th>
+                <th style={{ width: 199, textAlign: "center" }}>Total</th>
+                <th style={{ width: 199, textAlign: "center" }}>Remove</th>
               </tr>
             </thead>
             <tbody>
@@ -150,13 +175,55 @@ export default function Cart() {
                   <td>
                     <img height="120px" width="100px" src={cart.img} alt="" />
                   </td>
-                  <td style={{ width: 400 }}>{cart.name}</td>
-                  <td style={{ width: 199 }}>$ {cart.price}</td>
-                  <td style={{ width: 400 }}>{cart.quantity}</td>
-                  <td style={{ width: 199 }}>$ {cart.total}</td>
-                  <td style={{ width: 199 }}>
+                  <td style={{ width: 400, textAlign: "center" }}>
+                    {cart.name}
+                  </td>
+                  <td style={{ width: 199, textAlign: "center" }}>
+                    $ {cart.price}
+                  </td>
+                  <td style={{ width: 400, textAlign: "center" }}>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        textAlign: "start",
+                      }}
+                    >
+                      <Box sx={{ border: "1px solid gray", mr: 2 }}>
+                        <Button onClick={cartMinus}>
+                          <i class="fas fa-minus"></i>
+                        </Button>
+                        <input
+                          id="cartNumber"
+                          type="number"
+                          min="0"
+                          defaultValue={cart.quantity}
+                          style={{
+                            width: "60px",
+                            padding: "5px",
+                            textAlign: "center",
+                            fontSize: "18px",
+                            border: 0,
+                          }}
+                        />
+                        <Button onClick={cartPlus}>
+                          <i class="fas fa-plus"></i>
+                        </Button>
+                      </Box>
+                      <Button
+                        onClick={() => handleAddToCart(cart._id)}
+                        variant="outlined"
+                      >
+                        Update
+                      </Button>
+                    </Box>
+                  </td>
+                  <td style={{ width: 199, textAlign: "center" }}>
+                    $ {cart.total}
+                  </td>
+                  <td style={{ width: 199, textAlign: "center" }}>
                     <Button
-                      variant="text"
+                      variant="outlined"
                       onClick={() => handleRemoveCart(cart._id)}
                     >
                       Remove
@@ -167,27 +234,16 @@ export default function Cart() {
             </tbody>
           </table>
         </Root>
-        <Box sx={{ pt: 3 }}>
-          <Grid container spacing={2}>
-            <Grid item xs={8}>
-              <Link
-                to="/explore"
-                style={{ textDecoration: "none", color: "black" }}
-              >
-                <Button variant="contained">CONTINUE SHOPPING </Button>
-              </Link>
-            </Grid>
-            <Grid
-              item
-              xs={4}
-              sx={{ display: "flex", justifyContent: "space-between" }}
-            >
-              <Button variant="contained">UPDATE CART</Button>
-              <Button variant="contained" onClick={handleClearCart}>
-                CLEAR CART
-              </Button>
-            </Grid>
-          </Grid>
+        <Box sx={{ pt: 3, display: "flex", justifyContent: "space-between" }}>
+          <Link
+            to="/explore"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <Button variant="contained">CONTINUE SHOPPING </Button>
+          </Link>
+          <Button variant="contained" onClick={handleClearCart}>
+            CLEAR CART
+          </Button>
         </Box>
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           <Box
@@ -220,13 +276,17 @@ export default function Cart() {
                 <Typography variant="h5">$ {totalShoppingCost}</Typography>
               </Grid>
             </Grid>
-            <Button
-              variant="contained"
-              sx={{ mt: 3, align: "left" }}
-              onClick={handleOrder}
-            >
-              Proceed to Checkout
-            </Button>
+            {carts.length ? (
+              <Button
+                variant="contained"
+                sx={{ mt: 3, align: "left" }}
+                onClick={handleOrder}
+              >
+                Proceed to Checkout
+              </Button>
+            ) : (
+              ""
+            )}
           </Box>
         </Box>
       </Container>

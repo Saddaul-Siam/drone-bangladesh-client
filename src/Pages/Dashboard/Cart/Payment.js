@@ -1,4 +1,4 @@
-import { Container, Grid, Paper, Typography } from "@mui/material";
+import { Button, Container, Grid, Paper, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import CartDetails from "./CartDetails";
@@ -19,6 +19,21 @@ const Payment = () => {
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, [id]);
+
+  const sslCommercePayment = () => {
+    fetch(`http://localhost:5000/init`, {
+      method: "PUT",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(orders),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        window.location.replace(data);
+      })
+      .finally(() => {
+        localStorage.removeItem("shopping_cart");
+      });
+  };
   return (
     <Container>
       <Grid container spacing={2}>
@@ -45,7 +60,7 @@ const Payment = () => {
               </Typography>
             </Box>
             <Typography variant="h6" sx={{ py: 3 }}>
-              Payment
+              Payment With Stripe
             </Typography>
             {orders?.totalShoppingCost && (
               <Elements stripe={stripePromise}>
@@ -53,8 +68,11 @@ const Payment = () => {
               </Elements>
             )}
             <Typography variant="h6" sx={{ py: 3 }}>
-              SSL Commerce Coming soon
+              Payment With SSL Commerce
             </Typography>
+            <Button onClick={sslCommercePayment} variant="outlined">
+              SSL Commerce
+            </Button>
           </Paper>
         </Grid>
         <Grid item xs={12} md={6}>

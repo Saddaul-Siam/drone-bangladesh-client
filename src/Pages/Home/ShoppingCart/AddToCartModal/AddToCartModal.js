@@ -22,6 +22,7 @@ const style = {
 };
 
 const AddToCartModal = (props) => {
+  const Swal = require("sweetalert2");
   const { user } = useAuth();
   const location = useLocation();
   const [product, setProduct] = useState({});
@@ -34,11 +35,37 @@ const AddToCartModal = (props) => {
   }, [props?.productId]);
 
   const handleAddToCart = () => {
-    addToDb(product._id);
+    const quantity = document.getElementById("cartNumber");
+    addToDb(product._id, quantity.value);
 
-    alert("Products add to cart successfully");
+    props.handleClose();
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Add to cart successfully",
+      showConfirmButton: false,
+      timer: 1500,
+    });
   };
 
+  const updateProductNumber = (isIncreasing) => {
+    const productInput = document.getElementById("cartNumber");
+    let productNumber = productInput.value;
+    if (isIncreasing === true) {
+      productNumber = parseInt(productNumber) + 1;
+    } else if (productNumber > 0) {
+      productNumber = parseInt(productNumber) - 1;
+    }
+    productInput.value = productNumber;
+  };
+
+  const cartPlus = () => {
+    updateProductNumber(true);
+  };
+
+  const cartMinus = () => {
+    updateProductNumber(false);
+  };
   return (
     <div>
       <Modal
@@ -70,13 +97,43 @@ const AddToCartModal = (props) => {
                 <Typography variant="body1" sx={{ pt: 3, pb: 2 }}>
                   {product?.description}
                 </Typography>
-                {user.email ? (
-                  <Button onClick={handleAddToCart} variant="outlined">
-                    Add to cart
-                  </Button>
-                ) : (
-                  <Navigate to="/login" state={{ from: location }} />
-                )}
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    pt: 3,
+                    textAlign: "start",
+                  }}
+                >
+                  <Box sx={{ border: "1px solid gray", py: 1, mr: 5 }}>
+                    <Button onClick={cartMinus}>
+                      <i class="fas fa-minus"></i>
+                    </Button>
+                    <input
+                      id="cartNumber"
+                      type="number"
+                      min="0"
+                      defaultValue="1"
+                      style={{
+                        width: "65px",
+                        padding: "5px",
+                        textAlign: "center",
+                        fontSize: "18px",
+                        border: 0,
+                      }}
+                    />
+                    <Button onClick={cartPlus}>
+                      <i class="fas fa-plus"></i>
+                    </Button>
+                  </Box>
+                  {user.email ? (
+                    <Button onClick={handleAddToCart} variant="outlined">
+                      Add to cart
+                    </Button>
+                  ) : (
+                    <Navigate to="/login" state={{ from: location }} />
+                  )}
+                </Box>
               </Grid>
             </Grid>
           </Box>

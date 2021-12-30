@@ -16,6 +16,7 @@ import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { Link } from "react-router-dom";
 AOS.init();
 
 // install Swiper modules
@@ -47,13 +48,6 @@ const Banner = () => {
         fontWeight: "700px !important",
         color: "#06264b !important",
         lineHeight: "70px !important",
-      },
-      [theme.breakpoints.up("md")]: {
-        fontFamily: "Playfair Display !important",
-        fontSize: "125px !important",
-        fontWeight: "700px !important",
-        color: "#06264b !important",
-        lineHeight: "125px !important",
       },
     },
     bannerText: {
@@ -105,7 +99,16 @@ const Banner = () => {
                   >
                     #A Drone is a Portable
                   </Typography>
-                  <Typography className={bannerTitle}>
+                  <Typography
+                    className={bannerTitle}
+                    sx={{
+                      fontFamily: "Playfair Display",
+                      fontSize: "125px ",
+                      fontWeight: 700,
+                      color: "#06264b",
+                      lineHeight: "125px",
+                    }}
+                  >
                     Minimal <br /> Drone
                   </Typography>
                   <Typography
@@ -123,13 +126,15 @@ const Banner = () => {
                     Experience the decibels like your ears deserve to. Safe for{" "}
                     <br /> the ears, very for the heart. A treat to your ears.
                   </Typography>
-                  <Button
-                    color="info"
-                    variant="contained"
-                    sx={{ mt: 5, borderRadius: "50px", px: 2, py: 1 }}
-                  >
-                    Explore More
-                  </Button>
+                  <Link to="/explore" style={{ textDecoration: "none" }}>
+                    <Button
+                      color="info"
+                      variant="contained"
+                      sx={{ mt: 5, borderRadius: "50px", px: 2, py: 1 }}
+                    >
+                      Explore More
+                    </Button>
+                  </Link>
                 </Box>
               </Grid>
               <Grid item xs={6} md={6}>
@@ -168,7 +173,16 @@ const Banner = () => {
                   >
                     #Most Functional
                   </Typography>
-                  <Typography className={bannerTitle}>
+                  <Typography
+                    className={bannerTitle}
+                    sx={{
+                      fontFamily: "Playfair Display",
+                      fontSize: "125px ",
+                      fontWeight: 700,
+                      color: "#06264b",
+                      lineHeight: "125px",
+                    }}
+                  >
                     Minimalist <br /> Store
                   </Typography>
                   <Typography
@@ -186,13 +200,15 @@ const Banner = () => {
                     Experience the decibels like your ears deserve to. Safe for
                     <br /> the ears, very for the heart. A treat to your ears.
                   </Typography>
-                  <Button
-                    color="info"
-                    variant="contained"
-                    sx={{ mt: 5, borderRadius: "50px", px: 2, py: 1 }}
-                  >
-                    Explore More
-                  </Button>
+                  <Link to="/explore" style={{ textDecoration: "none" }}>
+                    <Button
+                      color="info"
+                      variant="contained"
+                      sx={{ mt: 5, borderRadius: "50px", px: 2, py: 1 }}
+                    >
+                      Explore More
+                    </Button>
+                  </Link>
                 </Box>
               </Grid>
               <Grid item xs={6} md={6}>
@@ -231,7 +247,16 @@ const Banner = () => {
                   >
                     #Flying With Smart Control
                   </Typography>
-                  <Typography className={bannerTitle}>
+                  <Typography
+                    className={bannerTitle}
+                    sx={{
+                      fontFamily: "Playfair Display",
+                      fontSize: "125px ",
+                      fontWeight: 700,
+                      color: "#06264b",
+                      lineHeight: "125px",
+                    }}
+                  >
                     Minimal <br /> Flying
                   </Typography>
                   <Typography
@@ -249,13 +274,15 @@ const Banner = () => {
                     Experience the decibels like your ears deserve to. Safe for{" "}
                     <br /> the ears, very for the heart. A treat to your ears.
                   </Typography>
-                  <Button
-                    color="info"
-                    variant="contained"
-                    sx={{ mt: 5, borderRadius: "50px", px: 2, py: 1 }}
-                  >
-                    Explore More
-                  </Button>
+                  <Link to="/explore" style={{ textDecoration: "none" }}>
+                    <Button
+                      color="info"
+                      variant="contained"
+                      sx={{ mt: 5, borderRadius: "50px", px: 2, py: 1 }}
+                    >
+                      Explore More
+                    </Button>
+                  </Link>
                 </Box>
               </Grid>
               <Grid item xs={6} md={6}>
