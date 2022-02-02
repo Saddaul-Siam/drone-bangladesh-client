@@ -5,6 +5,11 @@ import {
   Button,
   CircularProgress,
   Alert,
+  FormControl,
+  InputLabel,
+  Input,
+  InputAdornment,
+  IconButton,
 } from "@mui/material";
 import React, { useState } from "react";
 import { Grid } from "@mui/material";
@@ -12,12 +17,13 @@ import { NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../../../Hooks/useAuth";
 import PrimaryButton from "../../../../StyledComponent/MuiButton";
 import Navigation from "../../../Shared/Navigation/Navigation";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const Register = () => {
   const [loginData, setLoginData] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const { user, registerUser, isLoading, authError } = useAuth();
-
   const handleOnBlur = (e) => {
     const field = e.target.name;
     const value = e.target.value;
@@ -37,7 +43,7 @@ const Register = () => {
 
   return (
     <>
-    <Navigation></Navigation>
+      <Navigation></Navigation>
       <Container sx={{ mt: 10 }}>
         <Grid container spacing={2}>
           <Grid item sx={{ mt: 8 }} xs={12} md={6}>
@@ -64,24 +70,56 @@ const Register = () => {
                   onBlur={handleOnBlur}
                   variant="standard"
                 />
-                <TextField
-                  sx={{ width: "75%", m: 1 }}
-                  id="standard-basic"
-                  label="Your Password"
-                  type="password"
-                  name="password"
-                  onBlur={handleOnBlur}
-                  variant="standard"
-                />
-                <TextField
-                  sx={{ width: "75%", m: 1 }}
-                  id="standard-basic"
-                  label="ReType Your Password"
-                  type="password"
-                  name="password2"
-                  onBlur={handleOnBlur}
-                  variant="standard"
-                />
+                <FormControl sx={{ m: 1, width: "75%" }} variant="standard">
+                  <InputLabel htmlFor="standard-adornment-password">
+                    Password
+                  </InputLabel>
+                  <Input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    onBlur={handleOnBlur}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton>
+                          {showPassword ? (
+                            <Visibility
+                              onClick={() => setShowPassword(false)}
+                            />
+                          ) : (
+                            <VisibilityOff
+                              onClick={() => setShowPassword(true)}
+                            />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                  />
+                </FormControl>
+                <FormControl sx={{ m: 1, width: "75%" }} variant="standard">
+                  <InputLabel htmlFor="standard-adornment-password">
+                    Confirm Password
+                  </InputLabel>
+                  <Input
+                    type={showPassword ? "text" : "password"}
+                    name="password2"
+                    onBlur={handleOnBlur}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton>
+                          {showPassword ? (
+                            <Visibility
+                              onClick={() => setShowPassword(false)}
+                            />
+                          ) : (
+                            <VisibilityOff
+                              onClick={() => setShowPassword(true)}
+                            />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                  />
+                </FormControl>
                 <PrimaryButton
                   sx={{ width: "75%", m: 1 }}
                   type="submit"
